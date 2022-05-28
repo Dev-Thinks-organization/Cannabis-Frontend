@@ -29,7 +29,7 @@ const Filters = ({
           name="cars"
           value={selectedCategory}
           id="cars"
-          className="border-[1px] border-[#004B23] px-5 py-2"
+          className="border-[1px] border-[#004B23] px-5 py-2 custom-select"
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
           <option value="">Category</option>
