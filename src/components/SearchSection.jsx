@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-
+import Search from "../Assets/Search.svg";
 const SearchSection = ({
   setSearchResults,
   searchResults,
@@ -18,7 +18,7 @@ const SearchSection = ({
 }) => {
   const fetchData = async () => {
     const res = await Axios.get(
-      `http://localhost:8000/api/items/?search=${searchText}&max_price=${
+      `https://cba-backend.herokuapp.com/api/items/?search=${searchText}&max_price=${
         maxPrice ? maxPrice : ""
       }&min_price=${minPrice ? minPrice : ""}&category__name=${
         selectedCategory ? selectedCategory : ""
@@ -38,7 +38,7 @@ const SearchSection = ({
     setSearchText(e.target.value);
     console.log(e);
     const res = await Axios.get(
-      `http://localhost:8000/api/items/?search=${searchText}&max_price=${
+      `https://cba-backend.herokuapp.com/api/items/?search=${searchText}&max_price=${
         maxPrice ? maxPrice : ""
       }&min_price=${minPrice ? minPrice : ""}&category__name=${
         selectedCategory ? selectedCategory : ""
@@ -56,12 +56,15 @@ const SearchSection = ({
             Discover the best CBD Products
           </h1>
           <label></label>
-          <input
-            className="p-2 rounded-sm"
-            placeholder="What CBD products are you looking for?"
-            onChange={onType}
-            value={searchText}
-          />
+          <div className="p-2  bg-white flex  rounded-full w-full ">
+            <img src={Search} alt="logo " />
+            <input
+              onChange={onType}
+              value={searchText}
+              className="decoration-none selection:decoration-none w-full focus:outline-none"
+              placeholder="What CBD products are you looking for?"
+            />
+          </div>
         </div>
       </div>
     </div>

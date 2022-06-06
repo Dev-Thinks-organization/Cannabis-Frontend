@@ -10,17 +10,17 @@ const Card = (props) => {
   };
   return (
     <a href={props?.details?.link_to_item} target={"_blank"}>
-      <div className="w-56 h-auto rounded-sm  overflow-hidden shadow-lg">
+      <div className="w-56 h-auto rounded-sm h-80  overflow-hidden shadow-lg">
         <img
-          className="w-full object-cover h-36"
+          className="w-full object-contain h-1/2"
           // src="https://v1.tailwindcss.com/img/card-top.jpg"
           // TODO - add image when deploying
           src={props.details.img_source_link}
           alt="Sunset in the mountains"
         />
-        <div className="px-3  ">
-          <div className="flex flex-wrap justify-between">
-            <div className="font-normal text-base text-[#004B23] mb-1">
+        <div className="px-3   center">
+          <div className="flex flex-wrap justify-center ">
+            <div className="font-normal text-base text-[#004B23] mb-1 text-left">
               {truncate(props?.details?.name, 4)}
               {console.log(props?.details?.reviews_score)}
             </div>{" "}
@@ -33,7 +33,7 @@ const Card = (props) => {
               starRatedColor="#CCFF33"
             />
           </div>
-          <p className="text-[#004B23] text-base">
+          <p className="text-[#004B23] text-base text-center">
             {props?.details?.count_of_reviews} Reviews
           </p>
         </div>
@@ -41,18 +41,21 @@ const Card = (props) => {
         <div className="px-6 pt-1 pb-2 flex justify-center font-bold text-[#004B23] flex-wrap ">
           {props?.details.original_price_from &&
           props?.details.price_range_from ? (
-            <>
-              <s className="text-[#C4C4C4] font-normal ">
+              <>
+                {
+                  props?.details.original_price_from === props?.details.original_price_to ? (<> <s className="text-[#C4C4C4] font-normal ">
                 $ {props?.details?.original_price_from} - $
                 {props?.details?.original_price_to}
-              </s>{" "}
+              </s>{" "}</>):(<></>)
+                }
+             
               $ {props?.details?.price_range_from} - $
               {props?.details?.price_range_to}
             </>
           ) : (
             <>
-              <s className="text-[#C4C4C4] font-normal mr-1 ">
-                ${props?.details?.original_price}
+                <s className="text-[#C4C4C4] font-normal mr-1 ">
+                  { props?.details.original_price !== props?.details.price ? (<>$ {props?.details?.original_price}</>):(<></>) }
               </s>{" "}
               ${props?.details?.price}
             </>

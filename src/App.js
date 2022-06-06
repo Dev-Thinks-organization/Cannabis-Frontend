@@ -8,6 +8,7 @@ import Axios from "axios";
 
 import SearchSection from "./components/SearchSection";
 import Footer from "./components/Footer";
+import Message from "./components/Message";
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [category, setCategory] = useState(null);
@@ -21,12 +22,16 @@ function App() {
   const [totalPage, setTotalPages] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const getCategories = async () => {
-    const res = await Axios.get("http://localhost:8000/api/category/");
+    const res = await Axios.get(
+      "https://cba-backend.herokuapp.com/api/category/"
+    );
     console.log(res);
     setCategory(res.data.results);
   };
   const getBenefits = async () => {
-    const res = await Axios.get("http://localhost:8000/api/benefits/");
+    const res = await Axios.get(
+      "https://cba-backend.herokuapp.com/api/benefits/"
+    );
     console.log(res);
     setBenefits(res.data);
   };
@@ -35,7 +40,7 @@ function App() {
     getBenefits();
   }, []);
   return (
-    <div className="">
+    <div className=" ">
       <NavBar />
       <SearchSection
         selectedBenefit={selectedBenefit}
@@ -54,7 +59,11 @@ function App() {
         searchResults={searchResults}
         setSearchResults={setSearchResults}
       />
-      <div className="flex flex-col md:flex-row md:justify-start md:items-start">
+      <div className="container mx-auto">
+        <Message />
+      </div>
+
+      <div className="flex container mx-auto flex-col md:flex-row  sm:items-center md:items-start ">
         <Filters
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}

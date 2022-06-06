@@ -23,8 +23,9 @@ const ItemSection = ({ data, count, page, setPage, totalPage, searchText }) => {
   return (
     <div className="flex justify-center items-center p-3">
       <div className="bg-white container mx-auto">
-        <div className="w-full flex justify-between">
-          <h1>{count} results</h1>
+        <div className="w-full  flex justify-between">
+          <h1 className="text-[#004B23] font-normal ">{count} Results</h1>
+          <button className="text-[#004B23] ">Sort</button>
         </div>
         <div className="flex  justify-evenly flex-wrap w-full gap-6">
           {data.length > 0 ? (

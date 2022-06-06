@@ -21,15 +21,14 @@ const Filters = ({
     setSelectedCategory("");
   };
   return (
-    <div className=" flex justify-center items-center  ">
-      <div className="bg-white border-2 flex flex-col py-10 px-10 mt-10">
+    <div className="  max-w-sm  ">
+      <div className="bg-white border-2 text-[#004B23] flex flex-col py-5 px-10 mt-10">
         <h1>FILTER BY</h1>
-        <label htmlFor="cars">Choose a Category</label>
         <select
           name="cars"
           value={selectedCategory}
           id="cars"
-          className="border-[1px] border-[#004B23] px-5 py-2 custom-select"
+          className="  custom-select"
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
           <option value="">Category</option>
@@ -46,10 +45,9 @@ const Filters = ({
         </select>
         <div className="flex justify-center flex-col">
           {" "}
-          <label htmlFor="Min Price">Min Price</label>
           <select
             name="Min Price"
-            className="border-[1px] border-[#004B23] px-5 py-2"
+             className="  custom-select"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
           >
@@ -82,10 +80,9 @@ const Filters = ({
             <option value="80000">$ 80,000</option>
             <option value="90000">$ 90,000</option>
           </select>
-          <label htmlFor="Max Price">Max Price</label>
           <select
             name="Max Price "
-            className="border-[1px] border-[#004B23] px-5 py-2"
+                className="  custom-select"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
           >
@@ -120,11 +117,10 @@ const Filters = ({
           </select>
         </div>
 
-        <label htmlFor="cars">Benefits</label>
         <select
           name="cars"
           id="cars"
-          className="border-[1px] border-[#004B23] px-5 py-2"
+              className="  custom-select"
           onChange={(e) => setSelectedBenefit(e.target.value)}
           value={selectedBenefit}
         >
@@ -135,7 +131,7 @@ const Filters = ({
             ))}
         </select>
         <button
-          className="border-2 mt-4 border-[#004B23]"
+          className="border-2 mt-4 border-[#C4C4C4] text-[#004B23] bg-white text-center py-2 px-4 "
           onClick={() => clearFilter()}
         >
           Clear Filters
