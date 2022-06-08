@@ -21,7 +21,7 @@ const Filters = ({
     setSelectedCategory("");
   };
   return (
-    <div className="  max-w-sm  ">
+    <div className="  max-w-sm ">
       <div className="bg-white border-2 text-[#004B23] flex flex-col py-5 px-10 mt-10">
         <h1>FILTER BY</h1>
         <select
@@ -47,7 +47,7 @@ const Filters = ({
           {" "}
           <select
             name="Min Price"
-             className="  custom-select"
+            className="  custom-select"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
           >
@@ -82,7 +82,7 @@ const Filters = ({
           </select>
           <select
             name="Max Price "
-                className="  custom-select"
+            className="  custom-select"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
           >
@@ -120,7 +120,7 @@ const Filters = ({
         <select
           name="cars"
           id="cars"
-              className="  custom-select"
+          className="  custom-select"
           onChange={(e) => setSelectedBenefit(e.target.value)}
           value={selectedBenefit}
         >

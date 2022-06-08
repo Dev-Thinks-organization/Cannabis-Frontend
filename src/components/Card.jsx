@@ -21,7 +21,11 @@ const Card = (props) => {
         <div className="px-3   center">
           <div className="flex flex-wrap justify-center ">
             <div className="font-normal text-base text-[#004B23] mb-1 text-left">
-              {truncate(props?.details?.name, 4)}
+              {truncate(props?.details?.name, 3)}
+              {console.log(props?.details?.reviews_score)}
+            </div>{" "}
+            <div className="font-normal text-xs text-[#004B23] mb-1 text-left">
+              {truncate(props?.details?.description, 3)}
               {console.log(props?.details?.reviews_score)}
             </div>{" "}
             <StarRatings
@@ -41,21 +45,30 @@ const Card = (props) => {
         <div className="px-6 pt-1 pb-2 flex justify-center font-bold text-[#004B23] flex-wrap ">
           {props?.details.original_price_from &&
           props?.details.price_range_from ? (
-              <>
-                {
-                  props?.details.original_price_from === props?.details.original_price_to ? (<> <s className="text-[#C4C4C4] font-normal ">
-                $ {props?.details?.original_price_from} - $
-                {props?.details?.original_price_to}
-              </s>{" "}</>):(<></>)
-                }
-             
+            <>
+              {props?.details.original_price_from ===
+              props?.details.original_price_to ? (
+                <>
+                  {" "}
+                  <s className="text-[#C4C4C4] font-normal ">
+                    $ {props?.details?.original_price_from} - $
+                    {props?.details?.original_price_to}
+                  </s>{" "}
+                </>
+              ) : (
+                <></>
+              )}
               $ {props?.details?.price_range_from} - $
               {props?.details?.price_range_to}
             </>
           ) : (
             <>
-                <s className="text-[#C4C4C4] font-normal mr-1 ">
-                  { props?.details.original_price !== props?.details.price ? (<>$ {props?.details?.original_price}</>):(<></>) }
+              <s className="text-[#C4C4C4] font-normal mr-1 ">
+                {props?.details.original_price !== props?.details.price ? (
+                  <>$ {props?.details?.original_price}</>
+                ) : (
+                  <></>
+                )}
               </s>{" "}
               ${props?.details?.price}
             </>

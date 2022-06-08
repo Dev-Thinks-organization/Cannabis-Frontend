@@ -4,7 +4,29 @@ import Loader from "react-loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-const ItemSection = ({ data, count, page, setPage, totalPage, searchText }) => {
+import Drawer from "./Drawer";
+import Filters from "./Filters";
+const ItemSection = ({
+  data,
+  count,
+  page,
+  setPage,
+  totalPage,
+  searchText,
+  selectedCategory,
+  setSelectedCategory,
+  maxPrice,
+  minPrice,
+  setMaxPrice,
+  setMinPrice,
+  category,
+  benefits,
+  setCategory,
+  selectedBenefit,
+  setBenefits,
+  setSelectedBenefit,
+}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
   const NextPage = () => {
     if (page >= totalPage) {
       alert(" You are at the end of the page ");
@@ -23,7 +45,29 @@ const ItemSection = ({ data, count, page, setPage, totalPage, searchText }) => {
   return (
     <div className="flex justify-center items-center p-3">
       <div className="bg-white container mx-auto">
-        <div className="w-full  flex justify-between">
+        <div className="w-full  flex justify-between bg-[#CCFF33] p-3 font-normal text-[#004B23] capitalize">
+          <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Filters
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              maxPrice={maxPrice}
+              minPrice={minPrice}
+              setMaxPrice={setMaxPrice}
+              setMinPrice={setMinPrice}
+              category={category}
+              benefits={benefits}
+              setCategory={setCategory}
+              selectedBenefit={selectedBenefit}
+              setBenefits={setBenefits}
+              setSelectedBenefit={setSelectedBenefit}
+            />
+          </Drawer>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="md:hidden text-[#004B23] font-normal capitalize"
+          >
+            Filter By
+          </button>
           <h1 className="text-[#004B23] font-normal ">{count} Results</h1>
           <button className="text-[#004B23] ">Sort</button>
         </div>

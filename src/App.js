@@ -9,6 +9,7 @@ import Axios from "axios";
 import SearchSection from "./components/SearchSection";
 import Footer from "./components/Footer";
 import Message from "./components/Message";
+import ReviewsCard from "./components/ReviewsCard";
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [category, setCategory] = useState(null);
@@ -59,12 +60,37 @@ function App() {
         searchResults={searchResults}
         setSearchResults={setSearchResults}
       />
-      <div className="container mx-auto">
-        <Message />
+      <div className="container    mx-auto px-6">
+        <div className="bg-white w-full rounded-t-xl">
+          <Message />
+        </div>
       </div>
 
       <div className="flex container mx-auto flex-col md:flex-row  sm:items-center md:items-start ">
-        <Filters
+        <div className="  hidden md:block">
+          <Filters
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            maxPrice={maxPrice}
+            setMaxPrice={setMaxPrice}
+            setMinPrice={setMinPrice}
+            category={category}
+            benefits={benefits}
+            setCategory={setCategory}
+            selectedBenefit={selectedBenefit}
+            setBenefits={setBenefits}
+            setSelectedBenefit={setSelectedBenefit}
+          />
+        </div>
+
+        <ItemSection
+          count={count}
+          data={searchResults}
+          searchText={searchText}
+          page={page}
+          setPage={setPage}
+          totalPage={totalPage}
+          setTotalPages={setTotalPages}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           maxPrice={maxPrice}
@@ -78,16 +104,29 @@ function App() {
           setBenefits={setBenefits}
           setSelectedBenefit={setSelectedBenefit}
         />
-        <ItemSection
-          count={count}
-          data={searchResults}
-          searchText={searchText}
-          page={page}
-          setPage={setPage}
-          totalPage={totalPage}
-          setTotalPages={setTotalPages}
-        />
       </div>
+      {/* bottom Message Section  */}
+      <div className="bg-[#CCFF33] p-4 flex justify-center items-center text-center font-sans font-normal text-[#004B23] text-2xl">
+        <h1>
+          Happy Customers? <br /> We've G ot 'Em! See what they have to say
+          about how we've revolutionized how they find CBD products online!
+        </h1>
+      </div>
+
+      {/* Cards Section  */}
+      <section className="max-h-max  flex flex-nowrap overflow-auto ">
+        {searchResults &&
+          searchResults.map((reviews) => (
+            <ReviewsCard
+              name={reviews.recent_customer_name}
+              description={reviews.recent_customer_desc}
+              rating={reviews.recent_customer_score}
+              title={reviews.recent_customer_title}
+              picture={reviews.img_source_link}
+            />
+          ))}
+      </section>
+
       <Footer />
     </div>
   );

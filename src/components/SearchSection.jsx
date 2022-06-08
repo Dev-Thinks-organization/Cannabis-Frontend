@@ -49,8 +49,8 @@ const SearchSection = ({
     setSearchResults(res.data.results);
   };
   return (
-    <div className="">
-      <div className="search-bg flex  items-center justify-center flex-wrap">
+    <div className=" ">
+      <div className="search-bg flex bg-[#CCFF33]  items-center justify-center flex-wrap h-96">
         <div className="w-1/2 flex flex-col item-center justify-center ">
           <h1 className=" text-white font-bold md:text-6xl  text-2xl text-center mb-10">
             Discover the best CBD Products
