@@ -1,15 +1,20 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Filters from "./components/Filters";
 import ItemSection from "./components/ItemSection";
 import NavBar from "./components/NavBar";
 import Axios from "axios";
-
 import SearchSection from "./components/SearchSection";
 import Footer from "./components/Footer";
 import Message from "./components/Message";
+import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import ReviewsCard from "./components/ReviewsCard";
+import LeftArrow from "./components/LeftArrow";
+import RightArrow from "./components/RightArrow";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [category, setCategory] = useState(null);
@@ -22,19 +27,33 @@ function App() {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPages] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [sort, setSort] = useState("-popular_ind");
+
   const getCategories = async () => {
-    const res = await Axios.get(
-      "https://cba-backend.herokuapp.com/api/category/"
-    );
-    console.log(res);
-    setCategory(res.data.results);
+    try {
+      const res = await Axios.get(
+        "https://cba-backend.herokuapp.com/api/category/"
+      );
+      console.log(res);
+      setCategory(res.data.results);
+    } catch (error) {
+      toast.error(
+        "something went wrong while getting the Categories try refresing the page "
+      );
+    }
   };
   const getBenefits = async () => {
-    const res = await Axios.get(
-      "https://cba-backend.herokuapp.com/api/benefits/"
-    );
-    console.log(res);
-    setBenefits(res.data);
+    try {
+      const res = await Axios.get(
+        "https://cba-backend.herokuapp.com/api/benefits/"
+      );
+      console.log(res);
+      setBenefits(res.data);
+    } catch (error) {
+      toast.error(
+        "something went wrong while getting the Benefits try refresing the page "
+      );
+    }
   };
   useEffect(() => {
     getCategories();
@@ -42,8 +61,20 @@ function App() {
   }, []);
   return (
     <div className=" ">
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
       <NavBar />
       <SearchSection
+        sort={sort}
         selectedBenefit={selectedBenefit}
         selectedCategory={selectedCategory}
         setCount={setCount}
@@ -84,6 +115,8 @@ function App() {
         </div>
 
         <ItemSection
+          sort={sort}
+          setSort={setSort}
           count={count}
           data={searchResults}
           searchText={searchText}
@@ -114,17 +147,21 @@ function App() {
       </div>
 
       {/* Cards Section  */}
-      <section className="max-h-max  flex flex-nowrap overflow-auto ">
-        {searchResults &&
-          searchResults.map((reviews) => (
-            <ReviewsCard
-              name={reviews.recent_customer_name}
-              description={reviews.recent_customer_desc}
-              rating={reviews.recent_customer_score}
-              title={reviews.recent_customer_title}
-              picture={reviews.img_source_link}
-            />
-          ))}
+      <section className="max-h-max container mx-auto  ">
+        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+          {searchResults &&
+            searchResults.map((reviews) => (
+              <ReviewsCard
+                itemId={reviews.id}
+                key={reviews.id}
+                name={reviews.recent_customer_name}
+                description={reviews.recent_customer_desc}
+                rating={reviews.recent_customer_score}
+                title={reviews.recent_customer_title}
+                picture={reviews.img_source_link}
+              />
+            ))}
+        </ScrollMenu>
       </section>
 
       <Footer />

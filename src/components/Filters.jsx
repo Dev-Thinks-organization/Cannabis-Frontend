@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Filters = ({
   setSelectedBenefit,
@@ -19,6 +20,7 @@ const Filters = ({
     setSelectedBenefit("");
     setMaxPrice("");
     setSelectedCategory("");
+    toast.success("All Filters Are Cleared");
   };
   return (
     <div className="  max-w-sm ">
@@ -29,7 +31,18 @@ const Filters = ({
           value={selectedCategory}
           id="cars"
           className="  custom-select"
-          onChange={(e) => setSelectedCategory(e.target.value)}
+          onChange={(e) => {
+            setSelectedCategory(e.target.value);
+            toast.success(`Filtering By Category ${e.target.value}`, {
+              position: "top-center",
+              autoClose: 4942,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }}
         >
           <option value="">Category</option>
           {category &&
@@ -49,7 +62,18 @@ const Filters = ({
             name="Min Price"
             className="  custom-select"
             value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
+            onChange={(e) => {
+              setMinPrice(e.target.value);
+              toast.success(`Filtering By Min Price ${e.target.value}$`, {
+                position: "top-center",
+                autoClose: 4942,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
           >
             <option value="">Min</option>
             <option value="0">$ 0</option>
@@ -84,7 +108,18 @@ const Filters = ({
             name="Max Price "
             className="  custom-select"
             value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
+            onChange={(e) => {
+              setMaxPrice(e.target.value);
+              toast.success(`Filtering By MaxPrice ${e.target.value}$`, {
+                position: "top-center",
+                autoClose: 4942,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
           >
             <option value="">Max</option>
             <option value="0">$ 0</option>
@@ -121,7 +156,18 @@ const Filters = ({
           name="cars"
           id="cars"
           className="  custom-select"
-          onChange={(e) => setSelectedBenefit(e.target.value)}
+          onChange={(e) => {
+            setSelectedBenefit(e.target.value);
+            toast.success(`Filtering By Benefit ${e.target.value}`, {
+              position: "top-center",
+              autoClose: 4942,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }}
           value={selectedBenefit}
         >
           <option value="">Benefits</option>

@@ -5,7 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import Drawer from "./Drawer";
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/solid";
+import slider from "../Assets/Slider.svg";
+import { css } from "@emotion/react";
+import ClipLoader from "react-spinners/ClipLoader";
+
 import Filters from "./Filters";
+import { toast } from "react-toastify";
 const ItemSection = ({
   data,
   count,
@@ -25,27 +33,34 @@ const ItemSection = ({
   selectedBenefit,
   setBenefits,
   setSelectedBenefit,
+  setSort,
+  sort,
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const NextPage = () => {
     if (page >= totalPage) {
-      alert(" You are at the end of the page ");
+      toast.alert(" You are at the end of the page ");
     } else {
       setPage(page + 1);
+      toast.success(`Current Page ${page + 1}`);
     }
   };
   const PreviousPage = () => {
     if (page <= 1) {
-      alert(" You are on the first page cant go back ");
+      toast.alert(" You are on the First page cant go back ");
     } else {
       setPage(page - 1);
+      toast.success(`Current Page ${page - 1}`);
     }
   };
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
 
   return (
-    <div className="flex justify-center items-center p-3">
-      <div className="bg-white container mx-auto">
-        <div className="w-full  flex justify-between bg-[#CCFF33] p-3 font-normal text-[#004B23] capitalize">
+    <div className="flex justify-center items-center p-3 w-full">
+      <div className="bg-white container mx-auto ">
+        <div className="  flex justify-between bg-[#CCFF33] p-3 font-normal mb-6 text-[#004B23] capitalize">
           <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
             <Filters
               selectedCategory={selectedCategory}
@@ -69,39 +84,121 @@ const ItemSection = ({
             Filter By
           </button>
           <h1 className="text-[#004B23] font-normal ">{count} Results</h1>
-          <button className="text-[#004B23] ">Sort</button>
+          <Menu as="div" className="relative inline-block text-left">
+            <div>
+              <Menu.Button className="inline-flex justify-center  ">
+                Sort
+                <img
+                  src={slider}
+                  className="-mr-1 ml-2 h-5 w-5"
+                  aria-hidden="true"
+                />
+              </Menu.Button>
+            </div>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="py-1">
+                  <Menu.Item selected>
+                    {({ active }) => (
+                      <p
+                        onClick={() => {
+                          setSort("-popular_ind");
+                          toast.success("Sorting By Popular Items");
+                        }}
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-[#004B23]"
+                            : "text-gray-700",
+                          "block px-4 py-2 text-sm"
+                        )}
+                      >
+                        Popular
+                      </p>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <p
+                        onClick={() => {
+                          setSort("-reviews_score");
+                          toast.success("Sorting By Top Rating");
+                        }}
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-[#004B23] font-normal"
+                            : "text-gray-700",
+                          "block px-4 py-2 text-sm"
+                        )}
+                      >
+                        Rating
+                      </p>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <p
+                        onClick={() => {
+                          setSort("price,price_range_from");
+                          toast.success("Sorting By Low To High");
+                        }}
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-[#004B23] font-normal"
+                            : "text-gray-700",
+                          "block px-4 py-2 text-sm"
+                        )}
+                      >
+                        Low to High
+                      </p>
+                    )}
+                  </Menu.Item>
+
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        onClick={() => {
+                          setSort("-price,-price_range_from");
+                          toast.success("Sorting By High To Low");
+                        }}
+                        type="submit"
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-[#004B23]  font-normal"
+                            : "text-gray-700",
+                          "block w-full text-left px-4 py-2 text-sm"
+                        )}
+                      >
+                        High to Low
+                      </button>
+                    )}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
         </div>
         <div className="flex  justify-evenly flex-wrap w-full gap-6">
           {data.length > 0 ? (
             data.map((details, id) => <Card details={details} key={id} />)
           ) : (
             <>
-              {searchText !== "" ? (
-                <h1 className="text-2xl text-[#004B23] font-bold">
-                  No results Found{" "}
-                </h1>
+              {searchText === "" ? (
+                <ClipLoader
+                  color={"#004B23"}
+                  loading={true}
+                  // css={override}
+                  size={150}
+                />
               ) : (
-                // <Loader
-                //   loaded={false}
-                //   lines={13}
-                //   length={20}
-                //   width={10}
-                //   radius={30}
-                //   corners={1}
-                //   rotate={0}
-                //   direction={1}
-                //   color="#000"
-                //   speed={1}
-                //   trail={60}
-                //   shadow={false}
-                //   hwaccel={false}
-                //   className="spinner"
-                //   zIndex={2e9}
-                //   top="50%"
-                //   left="50%"
-                //   scale={1.0}
-                //   loadedClassName="loadedContent"
-                // />
                 <h1 className="text-2xl text-[#004B23] font-bold">
                   No results Found{" "}
                 </h1>

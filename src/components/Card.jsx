@@ -1,16 +1,10 @@
 import React from "react";
 import StarRatings from "react-star-ratings";
-
+import { truncate } from "../Helpers/Index";
 const Card = (props) => {
-  const truncate = (str, max = 10) => {
-    const array = str.trim().split(" ");
-    const ellipsis = array.length > max ? "..." : "";
-
-    return array.slice(0, max).join(" ") + ellipsis;
-  };
   return (
     <a href={props?.details?.link_to_item} target={"_blank"}>
-      <div className="w-56 h-auto rounded-sm h-80  overflow-hidden shadow-lg">
+      <div className="w-56 h-auto rounded-sm h-80  overflow-hidden shadow-lg ">
         <img
           className="w-full object-contain h-1/2"
           // src="https://v1.tailwindcss.com/img/card-top.jpg"

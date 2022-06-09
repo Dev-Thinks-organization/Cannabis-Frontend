@@ -11,6 +11,7 @@ html{
   padding: 8px 12px;
   background-color: white;
   color: #004b23;
+  border:none;
   border-bottom: 2px solid #c4c4c4;
   cursor: pointer;
 
@@ -22,4 +23,12 @@ html{
   background-position: right 10px top 50%;
   background-size: 20px;
   padding-right: 30px;
+}
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.react-horizontal-scrolling-menu--scroll-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
