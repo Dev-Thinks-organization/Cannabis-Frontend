@@ -60,7 +60,7 @@ const ItemSection = ({
   return (
     <div className="flex justify-center items-center p-3 w-full">
       <div className="bg-white container mx-auto ">
-        <div className="  flex justify-between bg-[#CCFF33] p-3 font-normal mb-6 text-[#004B23] capitalize">
+        <div className="  flex justify-between md:bg-transparent bg-[#CCFF33] p-3 font-normal mb-6 text-[#004B23] capitalize">
           <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
             <Filters
               selectedCategory={selectedCategory}
@@ -87,11 +87,12 @@ const ItemSection = ({
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <Menu.Button className="inline-flex justify-center  ">
-                Sort
+                Sort By {sort}
                 <img
                   src={slider}
                   className="-mr-1 ml-2 h-5 w-5"
                   aria-hidden="true"
+                  alt="icon of sorting"
                 />
               </Menu.Button>
             </div>

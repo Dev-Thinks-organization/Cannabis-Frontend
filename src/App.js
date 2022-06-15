@@ -14,7 +14,7 @@ import LeftArrow from "./components/LeftArrow";
 import RightArrow from "./components/RightArrow";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import howItWorks from "./Assets/howItWorks.svg";
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [category, setCategory] = useState(null);
@@ -64,7 +64,7 @@ function App() {
       <ToastContainer
         position="top-right"
         autoClose={1000}
-        hideProgressBar={false}
+        hideProgressBar={true}
         newestOnTop
         closeOnClick
         rtl={false}
@@ -97,7 +97,7 @@ function App() {
         </div>
       </div>
 
-      <div className="flex container mx-auto flex-col md:flex-row  sm:items-center md:items-start ">
+      <div className="flex  flex-col md:flex-row  sm:items-center md:items-start ">
         <div className="  hidden md:block">
           <Filters
             selectedCategory={selectedCategory}
@@ -147,7 +147,7 @@ function App() {
       </div>
 
       {/* Cards Section  */}
-      <section className="max-h-max container mx-auto  ">
+      <section className="max-h-max container mx-auto  " id="reviews">
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
           {searchResults &&
             searchResults.map((reviews) => (
@@ -159,9 +159,15 @@ function App() {
                 rating={reviews.recent_customer_score}
                 title={reviews.recent_customer_title}
                 picture={reviews.img_source_link}
+                link={reviews.link_to_item}
               />
             ))}
         </ScrollMenu>
+      </section>
+      <section className="p-28" id="how-it-works">
+        <div className="container mx-auto fle">
+          <img src={howItWorks} className="w-[1372px] h-[1303px]" />
+        </div>
       </section>
 
       <Footer />

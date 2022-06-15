@@ -4,7 +4,7 @@ import { truncate } from "../Helpers/Index";
 const Card = (props) => {
   return (
     <a href={props?.details?.link_to_item} target={"_blank"}>
-      <div className="w-56 h-auto rounded-sm h-80  overflow-hidden shadow-lg ">
+      <div className="w-40 sm:w-56  rounded-sm h-80  overflow-hidden shadow-lg ">
         <img
           className="w-full object-contain h-1/2"
           // src="https://v1.tailwindcss.com/img/card-top.jpg"
@@ -16,15 +16,13 @@ const Card = (props) => {
           <div className="flex flex-wrap justify-center ">
             <div className="font-normal text-base text-[#004B23] mb-1 text-left">
               {truncate(props?.details?.name, 3)}
-              {console.log(props?.details?.reviews_score)}
             </div>{" "}
             <div className="font-normal text-xs text-[#004B23] mb-1 text-left">
               {truncate(props?.details?.description, 3)}
-              {console.log(props?.details?.reviews_score)}
             </div>{" "}
             <StarRatings
               rating={Math.round(props?.details?.reviews_score)}
-              numberOfStars={6}
+              numberOfStars={5}
               name="rating"
               starDimension="10px"
               starSpacing="5px"
