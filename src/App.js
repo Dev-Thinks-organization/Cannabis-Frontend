@@ -19,14 +19,14 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [category, setCategory] = useState(null);
   const [count, setCount] = useState(0);
-  const [benefits, setBenefits] = useState("");
+  const [benefits, setBenefits] = useState([]);
   const [selectedBenefit, setSelectedBenefit] = useState("");
   const [maxPrice, setMaxPrice] = useState(null);
   const [minPrice, setMinPrice] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPages] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState([]);
   const [sort, setSort] = useState("-popular_ind");
 
   const getCategories = async () => {
@@ -97,7 +97,7 @@ function App() {
         </div>
       </div>
 
-      <div className="flex  flex-col md:flex-row  sm:items-center md:items-start ">
+      <div className="flex  flex-col md:flex-row container mx-auto sm:items-center md:items-start ">
         <div className="  hidden md:block">
           <Filters
             selectedCategory={selectedCategory}

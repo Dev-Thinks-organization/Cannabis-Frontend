@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useRef } from "react";
+
 import { toast } from "react-toastify";
 
 const Filters = ({
@@ -15,191 +17,190 @@ const Filters = ({
   minPrice,
   maxPrice,
 }) => {
+  const categoryRef = useRef([]);
+  const benefitsRef = useRef([]);
+  const minpriceRef = useRef([]);
+  const maxpriceRef = useRef([]);
   const clearFilter = () => {
     setMinPrice("");
     setSelectedBenefit("");
     setMaxPrice("");
     setSelectedCategory("");
+    //unselet all the checkboxes
+
+    categoryRef.current.forEach((item) => {
+      item.checked = false;
+    });
+    benefitsRef.current.forEach((el) => {
+      el.checked = false;
+    });
+
+    minpriceRef.current.forEach((el) => {
+      el.checked = false;
+    });
+
+    maxpriceRef.current.forEach((el) => {
+      el.checked = false;
+    });
     toast.success("All Filters Are Cleared");
   };
   return (
-    <div className="  max-w-sm ">
-      <div className="bg-white border-2 text-[#004B23] flex flex-col py-5 px-10 mt-10">
+    <div className="max-w-sm">
+      <div className="mt-10 flex flex-col bg-white py-5 px-10 text-[#004B23] md:border-2">
         <h1>FILTER BY</h1>
-        <details
-          name="cars"
-          value={selectedCategory}
-          id="cars"
-          className=""
-          onChange={(e) => {
-            if (e.checked) {
-              console.log(e.target.value);
-              console.log(e);
-              console.log(selectedCategory);
-            } else {
-            }
-            console.log(e.target.checked);
-
-            setSelectedCategory(e.target.value);
-            toast.success(`Filtering By Category ${e.target.value}`, {
-              position: "top-center",
-              autoClose: 4942,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
-        >
-          <summary value="">Category</summary>
-          {category &&
-            category.map((data, id) => (
-              // <optgroup label={data.name} key={id}>
-              //   {data.children.map((option, subid) => (
-              //     <option value={option.name} key={subid}>
-              //       {option.name}
-              //     </option>
-              //   ))}
-              // </optgroup>
-              <div className="" key={id}>
-                <input
-                  type="checkbox"
-                  name="my-checkbox-category"
-                  value={data.name}
-                  id={id}
-                  key={id}
-                  className="  shadow checked:shadow-xl  border-[#004B23] focus:ring-[#004B23] checked:bg-[#004B23] "
-                />
-                <label htmlFor={data.name} className="font-bold p-2">
-                  {data.name}
-                </label>
-                <div>
-                  {data.children.map((option, subid) => (
-                    <div className="">
-                      <input
-                        type="checkbox"
-                        value={option.name}
-                        id={subid}
-                        key={subid}
-                        name="my-checkbox-category"
-                        className=""
-                      />
-
-                      <label htmlFor={option.name} className="p-2">
-                        {option.name}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-        </details>
-        <div className="flex justify-center flex-col">
-          {" "}
+        <section>
           <details
-            name="Min Price"
-            className="  custom-select"
-            value={minPrice}
+            name="cars"
+            value={selectedCategory}
+            id="cars"
+            className=""
             onChange={(e) => {
-              setMinPrice(e.target.value);
-              toast.success(`Filtering By Min Price ${e.target.value}$`, {
-                position: "top-center",
-                autoClose: 4942,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
+              // check if the checkbox is checked
+              if (e.target.checked) {
+                setSelectedCategory((current) => [...current, e.target.value]);
+              } else {
+                setSelectedCategory((current) =>
+                  current.filter((item) => item !== e.target.value)
+                );
+              }
             }}
           >
-            <summary value="">Min</summary>
-            <div className="">
-              {[1, 2, 3, 4, 5].map((_, i) => (
-                <div>
+            <summary value="" className="w-auto">
+              Category
+            </summary>
+            {category &&
+              category.map((data, id) => (
+                <div className="" key={id}>
+                  <input
+                    type="checkbox"
+                    name="my-checkbox-category"
+                    value={data.name}
+                    ref={(el) => (categoryRef.current[id] = el)}
+                    id={id}
+                    key={id}
+                    className="   border-[#004B23] shadow  checked:bg-[#004B23] checked:shadow-xl focus:ring-[#004B23] "
+                  />
+                  <label htmlFor={data.name} className="p-2 font-bold">
+                    {data.name}
+                  </label>
+                  <div>
+                    {data.children.map((option, subid) => (
+                      <div className="">
+                        <input
+                          type="checkbox"
+                          value={option.name}
+                          id={subid}
+                          key={subid}
+                          ref={(el) => (categoryRef.current[id] = el)}
+                          name="my-checkbox-category"
+                          className=""
+                        />
+
+                        <label htmlFor={option.name} className="p-2">
+                          {option.name}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </details>
+          <div className="flex flex-col justify-center">
+            <details
+              name="Min Price"
+              className="  custom-select"
+              value={minPrice}
+              onChange={(e) => {
+                setMinPrice(e.target.value);
+              }}
+            >
+              <summary value="" className="w-auto ">
+                Min
+              </summary>
+              <div className="">
+                {[1, 2, 3, 4, 5].map((_, i) => (
+                  <div>
+                    <input
+                      type={"radio"}
+                      ref={(el) => (minpriceRef.current[i] = el)}
+                      name={`minValue`}
+                      value={`${i + 1}00`}
+                      className="  border-[#004B23] shadow  checked:bg-[#004B23] checked:shadow-xl focus:ring-[#004B23] "
+                    />
+                    <label htmlFor={`${i + 1}00`} className="p-2">
+                      {" "}
+                      {`$${i + 1}00`}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </details>
+            <details
+              name="Max Price "
+              className="  custom-select"
+              value={maxPrice}
+              onChange={(e) => {
+                setMaxPrice(e.target.value);
+              }}
+            >
+              <summary className="w-auto ">Max</summary>
+
+              <div className="">
+                {[1, 2, 3, 4, 5].map((_, i) => (
+                  <div>
+                    <input
+                      type={"radio"}
+                      name={`maxValue`}
+                      ref={(el) => (maxpriceRef.current[i] = el)}
+                      value={`${i + 1}00`}
+                      className="  selected:hover:checked:focus:ring-[#004B23] border-[#004B23]  shadow checked:bg-[#004B23] checked:shadow-xl hover:ring-[#004B23] "
+                    />
+                    <label htmlFor={`${i + 1}00`} className="p-2">
+                      {`$${i + 1}00`}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </details>
+          </div>
+
+          <details
+            name="benefit"
+            id="cars"
+            className="  custom-select"
+            onChange={(e) => {
+              // check if the checkbox is checked
+              if (e.target.checked) {
+                setSelectedBenefit((current) => [...current, e.target.value]);
+              } else {
+                setSelectedBenefit((current) =>
+                  current.filter((item) => item !== e.target.value)
+                );
+              }
+            }}
+            value={selectedBenefit}
+          >
+            <summary value="" className="sm:w-full md:max-w-xs ">
+              Benefits
+            </summary>
+            {benefits &&
+              benefits.map((data, id) => (
+                <div key={id}>
                   <input
                     type={"checkbox"}
-                    name={`${i + 1}`}
-                    value={`${i + 1}00`}
+                    value={data.name}
+                    ref={(el) => (benefitsRef.current[id] = el)}
                   />
-                  <label htmlFor={`${i + 1}00`} className="p-2">
-                    {" "}
-                    {`$${i + 1}00`}
+                  <label htmlFor={data.name} className="p-2">
+                    {data.name}
                   </label>
                 </div>
               ))}
-            </div>
           </details>
-          <details
-            name="Max Price "
-            className="  custom-select"
-            value={maxPrice}
-            onChange={(e) => {
-              setMaxPrice(e.target.value);
-              toast.success(`Filtering By MaxPrice ${e.target.value}$`, {
-                position: "top-center",
-                autoClose: 4942,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            }}
-          >
-            <summary>Max</summary>
+        </section>
 
-            <div className="">
-              {[1, 2, 3, 4, 5].map((_, i) => (
-                <div>
-                  <input
-                    type={"checkbox"}
-                    name={`${i + 1}`}
-                    value={`${i + 1}00`}
-                  />
-                  <label htmlFor={`${i + 1}00`} className="p-2">
-                    {" "}
-                    {`$${i + 1}00`}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </details>
-        </div>
-
-        <details
-          name="benefit"
-          id="cars"
-          className="  custom-select"
-          onChange={(e) => {
-            setSelectedBenefit(e.target.value);
-            toast.success(`Filtering By Benefit ${e.target.value}`, {
-              position: "top-center",
-              autoClose: 4942,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
-          value={selectedBenefit}
-        >
-          <summary value="">Benefits</summary>
-          {benefits &&
-            benefits.map((data, id) => (
-              <div key={id}>
-                <input type={"checkbox"} value={data.name} />
-                <label htmlFor={data.name} className="p-2">
-                  {" "}
-                  {data.name}
-                </label>
-              </div>
-            ))}
-        </details>
         <button
-          className="border-2 mt-4 border-[#C4C4C4] text-[#004B23] bg-white text-center py-2 px-4 "
+          className="mt-4 border-2 border-[#C4C4C4] bg-white py-2 px-4 text-center text-[#004B23] "
           onClick={() => clearFilter()}
         >
           Clear Filters

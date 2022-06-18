@@ -37,6 +37,7 @@ const ItemSection = ({
   sort,
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [selectedSort, setSelectedSort] = React.useState("Popular");
   const NextPage = () => {
     if (page >= totalPage) {
       toast.alert(" You are at the end of the page ");
@@ -58,9 +59,9 @@ const ItemSection = ({
   }
 
   return (
-    <div className="flex justify-center items-center p-3 w-full">
-      <div className="bg-white container mx-auto ">
-        <div className="  flex justify-between md:bg-transparent bg-[#CCFF33] p-3 font-normal mb-6 text-[#004B23] capitalize">
+    <div className="flex w-full items-center justify-center p-3">
+      <div className="container mx-auto bg-white ">
+        <div className="  mb-6 flex justify-between bg-[#CCFF33] p-3 font-normal capitalize text-[#004B23] md:bg-transparent">
           <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
             <Filters
               selectedCategory={selectedCategory}
@@ -79,15 +80,15 @@ const ItemSection = ({
           </Drawer>
           <button
             onClick={() => setIsOpen(true)}
-            className="md:hidden text-[#004B23] font-normal capitalize"
+            className="font-normal capitalize text-[#004B23] md:hidden"
           >
             Filter By
           </button>
-          <h1 className="text-[#004B23] font-normal ">{count} Results</h1>
+          <h1 className="font-normal text-[#004B23] ">{count} Results</h1>
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <Menu.Button className="inline-flex justify-center  ">
-                Sort By {sort}
+                Sort By {selectedSort}
                 <img
                   src={slider}
                   className="-mr-1 ml-2 h-5 w-5"
@@ -106,12 +107,13 @@ const ItemSection = ({
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="py-1">
                   <Menu.Item selected>
                     {({ active }) => (
                       <p
                         onClick={() => {
+                          setSelectedSort("Popular");
                           setSort("-popular_ind");
                           toast.success("Sorting By Popular Items");
                         }}
@@ -130,12 +132,13 @@ const ItemSection = ({
                     {({ active }) => (
                       <p
                         onClick={() => {
+                          setSelectedSort("Highest Rating");
                           setSort("-reviews_score");
                           toast.success("Sorting By Top Rating");
                         }}
                         className={classNames(
                           active
-                            ? "bg-gray-100 text-[#004B23] font-normal"
+                            ? "bg-gray-100 font-normal text-[#004B23]"
                             : "text-gray-700",
                           "block px-4 py-2 text-sm"
                         )}
@@ -148,12 +151,13 @@ const ItemSection = ({
                     {({ active }) => (
                       <p
                         onClick={() => {
+                          setSelectedSort("Low To High");
                           setSort("price,price_range_from");
                           toast.success("Sorting By Low To High");
                         }}
                         className={classNames(
                           active
-                            ? "bg-gray-100 text-[#004B23] font-normal"
+                            ? "bg-gray-100 font-normal text-[#004B23]"
                             : "text-gray-700",
                           "block px-4 py-2 text-sm"
                         )}
@@ -167,15 +171,16 @@ const ItemSection = ({
                     {({ active }) => (
                       <button
                         onClick={() => {
+                          setSelectedSort("High To Low");
                           setSort("-price,-price_range_from");
                           toast.success("Sorting By High To Low");
                         }}
                         type="submit"
                         className={classNames(
                           active
-                            ? "bg-gray-100 text-[#004B23]  font-normal"
+                            ? "bg-gray-100 font-normal  text-[#004B23]"
                             : "text-gray-700",
-                          "block w-full text-left px-4 py-2 text-sm"
+                          "block w-full px-4 py-2 text-left text-sm"
                         )}
                       >
                         High to Low
@@ -187,7 +192,7 @@ const ItemSection = ({
             </Transition>
           </Menu>
         </div>
-        <div className="flex  justify-evenly flex-wrap w-full gap-6">
+        <div className="flex  w-full flex-wrap justify-evenly gap-6">
           {data.length > 0 ? (
             data.map((details, id) => <Card details={details} key={id} />)
           ) : (
@@ -200,7 +205,7 @@ const ItemSection = ({
                   size={150}
                 />
               ) : (
-                <h1 className="text-2xl text-[#004B23] font-bold">
+                <h1 className="text-2xl font-bold text-[#004B23]">
                   No results Found{" "}
                 </h1>
               )}
@@ -209,7 +214,7 @@ const ItemSection = ({
           {}
         </div>
         {data.length > 0 && (
-          <div className="mt-20 flex justify-center items-center px-5 text-[#004B23]">
+          <div className="mt-20 flex items-center justify-center px-5 text-[#004B23]">
             <FontAwesomeIcon
               className="cursor-pointer"
               icon={faArrowLeft}

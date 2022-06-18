@@ -20,12 +20,15 @@ const SearchSection = ({
 }) => {
   const fetchData = async () => {
     try {
+      let category = selectedCategory.toString();
+      let benefit = selectedBenefit.toString();
+      console.log(category, benefit);
       const res = await Axios.get(
         `https://cba-backend.herokuapp.com/api/items/?search=${searchText}&max_price=${
           maxPrice ? maxPrice : ""
-        }&min_price=${minPrice ? minPrice : ""}&category__name=${
-          selectedCategory ? selectedCategory : ""
-        }&benefits__name=${selectedBenefit ? selectedBenefit : ""}&page=${
+        }&min_price=${minPrice ? minPrice : ""}&category=${
+          selectedCategory ? category : ""
+        }&benefits=${selectedBenefit ? benefit : ""}&page=${
           page > 0 ? page : 1
         }&ordering=${sort ? sort : ""}`
       );
@@ -41,17 +44,21 @@ const SearchSection = ({
   useEffect(() => {
     fetchData();
   }, [minPrice, maxPrice, selectedCategory, selectedBenefit, page, sort]);
-  useEffect(() => {}, [page]);
+  useEffect(() => {
+    console.log(selectedCategory.toString());
+  }, [selectedCategory, page]);
   const onType = async (e) => {
     try {
       setSearchText(e.target.value);
       console.log(e);
+      let category = selectedCategory.toString();
+      let benefit = selectedBenefit.toString();
       const res = await Axios.get(
         `https://cba-backend.herokuapp.com/api/items/?search=${searchText}&max_price=${
           maxPrice ? maxPrice : ""
-        }&min_price=${minPrice ? minPrice : ""}&category__name=${
-          selectedCategory ? selectedCategory : ""
-        }&benefits__name=${selectedBenefit ? selectedBenefit : ""}&page=${
+        }&min_price=${minPrice ? minPrice : ""}&category=${
+          selectedCategory ? category : ""
+        }&benefits=${selectedBenefit ? benefit : ""}&page=${
           page > 0 ? page : 1
         }&ordering=${sort ? sort : ""}`
       );
