@@ -2,7 +2,12 @@ import React from "react";
 import Card from "./Card";
 import Loader from "react-loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faForwardStep,
+  faBackwardStep,
+} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import Drawer from "./Drawer";
 import { Fragment } from "react";
@@ -217,7 +222,7 @@ const ItemSection = ({
           <div className="mt-20 flex items-center justify-center px-5 text-[#004B23]">
             <FontAwesomeIcon
               className="cursor-pointer"
-              icon={faArrowLeft}
+              icon={faBackwardStep}
               onClick={() => PreviousPage()}
             />
             <h1 className="p-6">
@@ -226,7 +231,7 @@ const ItemSection = ({
             </h1>
             <FontAwesomeIcon
               className="cursor-pointer"
-              icon={faArrowRight}
+              icon={faForwardStep}
               onClick={() => NextPage()}
             />
           </div>

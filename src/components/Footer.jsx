@@ -6,14 +6,14 @@ import twitter from "../Assets/twitter.svg";
 import instagram from "../Assets/instagram.svg";
 const Footer = () => {
   return (
-    <div className="border-t-2">
-      <div className="flex justify-between flex-col container mx-auto py-12  ">
+    <div className="border-t-2" id="about">
+      <div className="container mx-auto flex flex-col justify-between py-12  ">
         <div className="p-24">
-          <h1 className=" text-center text-[#004B23] font-normal text-xl">
+          <h1 className=" text-center text-xl font-normal text-[#004B23]">
             <a>http://www.cbdgle.com/ </a>
             is the best source site to compare CBD Products prices
           </h1>
-          <p className="font-normal text-base text-center p-8 text-[#004B23]">
+          <p className="p-8 text-center text-base font-normal text-[#004B23]">
             All of our CBD products are 3rd party tested and have up to * 0.3%
             THC . *CBD pr oducts are legal on the federal level but are still
             illegal under some state laws. All CBD product's hea lth benefits on
@@ -26,23 +26,23 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="flex justify-start items-center ">
-          <img className="w-10 h-10" src={logo}></img>
-          <h1 className="text-[#004B23] ml-3 ">CBDgle</h1>
+        <div className="flex items-center justify-start ">
+          <img className="h-10 w-10" src={logo}></img>
+          <h1 className="ml-3 text-[#004B23] ">CBDgle</h1>
         </div>
         <div className="flex justify-end">
-          <img src={linkdien} alt="" srcset="" />
-          <img src={facebook} alt="" srcset="" />
-          <img src={twitter} alt="" srcset="" />
-          <img src={instagram} alt="" srcset="" />
+          <img src={linkdien} alt="" srcSet="" />
+          <img src={facebook} alt="" srcSet="" />
+          <img src={twitter} alt="" srcSet="" />
+          <img src={instagram} alt="" srcSet="" />
         </div>
-        <div className="border-b-2 mt-2 mb-2"></div>
-        <div className="flex justify-center flex-col items-center">
-          <h1 className="text-normal text-[#004B23] font-lg">
+        <div className="mt-2 mb-2 border-b-2"></div>
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-normal font-lg text-[#004B23]">
             Contact@cbdgle.com is the best source site to compare CBD Products
             prices
           </h1>
-          <h1 className="text-normal text-[#C4C4C4] font-lg">
+          <h1 className="text-normal font-lg text-[#C4C4C4]">
             2022 CBDgle all rights reserved
           </h1>
         </div>

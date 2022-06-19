@@ -92,12 +92,12 @@ function App() {
         setSearchResults={setSearchResults}
       />
       <div className="container    mx-auto px-6">
-        <div className="bg-white w-full rounded-t-xl">
+        <div className="w-full rounded-t-xl bg-white">
           <Message />
         </div>
       </div>
 
-      <div className="flex  flex-col md:flex-row container mx-auto sm:items-center md:items-start ">
+      <div className="container  mx-auto flex flex-col sm:items-center md:flex-row md:items-start ">
         <div className="  hidden md:block">
           <Filters
             selectedCategory={selectedCategory}
@@ -111,6 +111,8 @@ function App() {
             selectedBenefit={selectedBenefit}
             setBenefits={setBenefits}
             setSelectedBenefit={setSelectedBenefit}
+            page={page}
+            setPage={setPage}
           />
         </div>
 
@@ -139,7 +141,7 @@ function App() {
         />
       </div>
       {/* bottom Message Section  */}
-      <div className="bg-[#CCFF33] p-4 flex justify-center items-center text-center font-sans font-normal text-[#004B23] text-2xl">
+      <div className="flex items-center justify-center bg-[#CCFF33] p-4 text-center font-sans text-2xl font-normal text-[#004B23]">
         <h1>
           Happy Customers? <br /> We've G ot 'Em! See what they have to say
           about how we've revolutionized how they find CBD products online!
@@ -147,7 +149,7 @@ function App() {
       </div>
 
       {/* Cards Section  */}
-      <section className="max-h-max container mx-auto  " id="reviews">
+      <section className="container mx-auto max-h-max  " id="reviews">
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
           {searchResults &&
             searchResults.map((reviews) => (
@@ -164,9 +166,9 @@ function App() {
             ))}
         </ScrollMenu>
       </section>
-      <section className="p-28" id="how-it-works">
-        <div className="container mx-auto fle">
-          <img src={howItWorks} className="w-[1372px] h-[1303px]" />
+      <section className=" pt-32 pb-32 md:p-28" id="how-it-works">
+        <div className="fle container mx-auto">
+          <img src={howItWorks} className="md:h-[1303px] md:w-[1372px]" />
         </div>
       </section>
 

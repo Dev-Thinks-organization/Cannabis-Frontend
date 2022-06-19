@@ -4,34 +4,34 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
   return (
     <main
       className={
-        " fixed overflow-hidden z-10 bg-gray-900 bg-opacity-25 inset-0 transform ease-in-out " +
+        " fixed inset-0 z-10 transform overflow-hidden bg-gray-900 bg-opacity-25 ease-in-out " +
         (isOpen
-          ? " transition-opacity opacity-100 duration-500 translate-x-0  "
-          : " transition-all delay-500 opacity-0 translate-x-full  ")
+          ? " translate-x-0 opacity-100 transition-opacity duration-500  "
+          : " translate-x-full opacity-0 transition-all delay-500  ")
       }
     >
       <section
         className={
-          " w-screen max-w-lg right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform  " +
+          " delay-400 absolute right-0 h-full w-screen max-w-lg transform bg-white shadow-xl transition-all duration-500 ease-in-out  " +
           (isOpen ? " translate-x-0 " : " translate-x-full ")
         }
       >
-        <article className="relative w-screen max-w-lg pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
-          <div className="flex w-full justify-between bg-[#CCFF33]">
-            <header className="p-4 font-bold text-lg">Filter By</header>
+        <article className="relative flex h-full w-screen max-w-lg flex-col space-y-6 overflow-y-scroll pb-10">
+          <div className="flex w-full flex-row-reverse justify-between bg-[#CCFF33]">
+            <header className="p-4 text-lg font-bold">Filter By</header>
 
             <button
-              className="bg-[#CCFF33] h-18 mt-2 mr-2 w-16 rounded-3xl flex items-center justify-center "
+              className="h-18 mt-2 mr-2 flex w-16 items-center justify-center rounded-3xl bg-[#CCFF33] "
               onClick={() => setIsOpen(false)}
             >
               <img src={close} className="" alt="close icon " />
             </button>
           </div>
-          <div className="h-screen flex justify-center"> {children}</div>
+          <div className="flex h-screen justify-center"> {children}</div>
         </article>
       </section>
       <section
-        className=" w-screen h-full cursor-pointer "
+        className=" h-full w-screen cursor-pointer "
         onClick={() => {
           setIsOpen(false);
         }}
