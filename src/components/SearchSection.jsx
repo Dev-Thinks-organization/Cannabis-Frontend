@@ -74,14 +74,14 @@ const SearchSection = ({
   return (
     <div className=" ">
       <div
-        className={`search-bg flex bg-image   items-center justify-center flex-wrap h-96`}
+        className={`search-bg bg-image flex   h-96 flex-wrap items-center justify-center`}
       >
-        <div className="w-1/2 flex flex-col item-center justify-center ">
-          <h1 className=" text-[#004B23] font-bold md:text-6xl  text-2xl text-center mb-10">
-            Discover the best CBD Products
+        <div className="item-center flex w-1/2 flex-col justify-center ">
+          <h1 className=" mb-10 text-center text-2xl  font-normal text-[#004B23] md:text-6xl">
+            Discover the best <br /> CBD Products
           </h1>
           <label></label>
-          <div className="p-2  bg-white flex  rounded-full w-full ">
+          <div className="flex  w-full rounded-full  bg-white p-2 ">
             <img src={Search} alt="logo " />
             <input
               onChange={onType}

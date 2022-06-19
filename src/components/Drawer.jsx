@@ -18,7 +18,7 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
       >
         <article className="relative flex h-full w-screen max-w-lg flex-col space-y-6 overflow-y-scroll pb-10">
           <div className="flex w-full flex-row-reverse justify-between bg-[#CCFF33]">
-            <header className="p-4 text-lg font-bold">Filter By</header>
+            <header className="p-4 text-lg font-normal">Filter By</header>
 
             <button
               className="h-18 mt-2 mr-2 flex w-16 items-center justify-center rounded-3xl bg-[#CCFF33] "

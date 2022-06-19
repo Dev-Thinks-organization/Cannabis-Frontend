@@ -30,17 +30,9 @@ const Card = (props) => {
               line={2}
               element="span"
               className="cursor-pointer text-center"
-              truncateText="..."
+              truncateText={false}
               text={props?.details?.name}
-              textTruncateChild={
-                <a
-                  className="cursor-pointer hover:underline"
-                  onClick={() => setOpen(true)}
-                  href="#"
-                >
-                  read more
-                </a>
-              }
+              textTruncateChild={false}
             />
             {/* </a> */}
 
@@ -66,7 +58,12 @@ const Card = (props) => {
               className="text-center"
               text={props?.details?.description}
               textTruncateChild={
-                <a onClick={() => setOpenDescription(true)}>read more</a>
+                <a
+                  className="cursor-pointer hover:underline"
+                  onClick={() => setOpenDescription(true)}
+                >
+                  read more
+                </a>
               }
             />
             <Modal
@@ -98,7 +95,7 @@ const Card = (props) => {
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center px-6 pt-1 pb-2 font-bold text-[#004B23] ">
+      <div className="flex flex-wrap justify-center px-6 pt-1 pb-2 font-normal text-[#004B23] ">
         {props?.details.original_price_from &&
         props?.details.price_range_from ? (
           <>

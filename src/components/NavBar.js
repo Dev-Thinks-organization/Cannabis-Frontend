@@ -10,7 +10,7 @@ const NavBar = () => {
       </div>
 
       <div className="w-full">
-        <ul className="flex w-full justify-between p-4">
+        <ul className="flex w-full justify-between p-4 text-[#004B23] ">
           <li>
             <a href="#how-it-works">How it works </a>
           </li>
@@ -20,7 +20,15 @@ const NavBar = () => {
           <li>
             <a href="#about">About</a>
           </li>
-          <li>🇺🇸</li>
+          <li className="flex items-center justify-center">
+            <img
+              width={"22.14px"}
+              height={"15px"}
+              objectFit={"contain"}
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/800px-Flag_of_the_United_States.svg.png?20151118161041"
+              alt="US Flag"
+            />
+          </li>
         </ul>
       </div>
     </nav>

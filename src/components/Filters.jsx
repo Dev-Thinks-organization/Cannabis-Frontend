@@ -136,7 +136,7 @@ const Filters = ({
               }}
             >
               <summary value="" className="w-auto ">
-                Min
+                Min Price
               </summary>
               <div className="">
                 {[1, 2, 3, 4, 5].map((_, i) => (
@@ -165,7 +165,7 @@ const Filters = ({
                 setPage(1);
               }}
             >
-              <summary className="w-auto ">Max</summary>
+              <summary className="w-auto ">Max Price</summary>
 
               <div className="">
                 {[1, 2, 3, 4, 5].map((_, i) => (

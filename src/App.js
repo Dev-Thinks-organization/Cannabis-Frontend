@@ -167,7 +167,7 @@ function App() {
         </ScrollMenu>
       </section>
       <section className=" pt-32 pb-32 md:p-28" id="how-it-works">
-        <div className="fle container mx-auto">
+        <div className=" container mx-auto">
           <img src={howItWorks} className="md:h-[1303px] md:w-[1372px]" />
         </div>
       </section>
