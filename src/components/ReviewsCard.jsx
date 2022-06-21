@@ -12,7 +12,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
   };
   return (
     <div
-      className={`container mx-auto pt-24   pl-6 pr-6 hover:animate-pulse ${
+      className={`pt-18 container mx-auto   pl-6 pr-6 hover:animate-pulse ${
         description && title && picture && rating ? "" : "hidden"
       }`}
     >

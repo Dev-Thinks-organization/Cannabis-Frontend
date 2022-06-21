@@ -21,6 +21,7 @@ const NavBar = () => {
             <a href="#about">About</a>
           </li>
           <li className="flex items-center justify-center">
+            <p className="mr-2">US</p>
             <img
               width={"22.14px"}
               height={"15px"}

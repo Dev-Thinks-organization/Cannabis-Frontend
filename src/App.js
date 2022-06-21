@@ -91,7 +91,7 @@ function App() {
         searchResults={searchResults}
         setSearchResults={setSearchResults}
       />
-      <div className="container    mx-auto px-6">
+      <div className="container    mx-auto px-4">
         <div className="w-full rounded-t-xl bg-white">
           <Message />
         </div>
@@ -166,7 +166,7 @@ function App() {
             ))}
         </ScrollMenu>
       </section>
-      <section className=" pt-32 pb-32 md:p-28" id="how-it-works">
+      <section className=" md:p-18 pt-24 pb-24" id="how-it-works">
         <div className=" container mx-auto">
           <img src={howItWorks} className="md:h-[1303px] md:w-[1372px]" />
         </div>

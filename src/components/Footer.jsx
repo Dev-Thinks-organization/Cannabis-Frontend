@@ -8,12 +8,12 @@ const Footer = () => {
   return (
     <div className="border-t-2" id="about">
       <div className="container mx-auto flex flex-col justify-between py-12  ">
-        <div className="p-24">
-          <h1 className=" text-center text-xl font-normal text-[#004B23]">
-            <a>http://www.cbdgle.com/ </a>
+        <div className="pt-24 pb-24">
+          <h1 className="text-center text-xl font-normal text-[#004B23]">
+            <a>www.cbdgle.com</a>
             is the best source site to compare CBD Products prices
           </h1>
-          <p className="p-8 text-center text-base font-normal text-[#004B23]">
+          <p className="p-4 text-left text-base font-normal text-[#004B23] md:text-center">
             All of our CBD products are 3rd party tested and have up to * 0.3%
             THC . *CBD pr oducts are legal on the federal level but are still
             illegal under some state laws. All CBD product's hea lth benefits on
