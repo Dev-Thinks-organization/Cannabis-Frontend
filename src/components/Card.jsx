@@ -21,7 +21,7 @@ const Card = (props) => {
           alt="Sunset in the mountains"
         />
       </a>
-      <div className=" h-48 w-40  border-2 border-[#E5E5E5]  md:w-56">
+      <div className=" h-48 w-40  border-[1px] border-[#E5E5E5]  md:w-56">
         <div className="center    px-3">
           <div className="flex flex-wrap justify-center ">
             <div className="mb-1 text-left text-base font-normal text-[#004B23]">
@@ -92,43 +92,46 @@ const Card = (props) => {
               starRatedColor="#CCFF33"
             />
           </div>
-          <p className="text-center text-base text-[#004B23]">
-            {props?.details?.count_of_reviews} Reviews
-          </p>
+          <a href={props?.details?.link_to_item} target={"_blank"}>
+            <p className="text-center text-base text-[#004B23]">
+              {props?.details?.count_of_reviews} Reviews
+            </p>
+          </a>
         </div>
-
-        <div className="flex flex-wrap justify-center px-6 pt-1 pb-2 font-normal text-[#004B23] ">
-          {props?.details.original_price_from &&
-          props?.details.price_range_from ? (
-            <>
-              {props?.details.original_price_from ===
-              props?.details.original_price_to ? (
-                <>
-                  {" "}
-                  <s className="font-normal text-[#C4C4C4] ">
-                    $ {props?.details?.original_price_from} - $
-                    {props?.details?.original_price_to}
-                  </s>{" "}
-                </>
-              ) : (
-                <></>
-              )}
-              $ {props?.details?.price_range_from} - $
-              {props?.details?.price_range_to}
-            </>
-          ) : (
-            <>
-              <s className="mr-1 font-normal text-[#C4C4C4] ">
-                {props?.details.original_price !== props?.details.price ? (
-                  <>$ {props?.details?.original_price}</>
+        <a href={props?.details?.link_to_item} target={"_blank"}>
+          <div className="flex flex-wrap justify-center px-6 pt-1 pb-2 font-normal text-[#004B23] ">
+            {props?.details.original_price_from &&
+            props?.details.price_range_from ? (
+              <>
+                {props?.details.original_price_from ===
+                props?.details.original_price_to ? (
+                  <>
+                    {" "}
+                    <s className="font-normal text-[#C4C4C4] ">
+                      $ {props?.details?.original_price_from} - $
+                      {props?.details?.original_price_to}
+                    </s>{" "}
+                  </>
                 ) : (
                   <></>
                 )}
-              </s>{" "}
-              <span className="text-[#C10000]">${props?.details?.price}</span>
-            </>
-          )}
-        </div>
+                $ {props?.details?.price_range_from} - $
+                {props?.details?.price_range_to}
+              </>
+            ) : (
+              <>
+                <s className="mr-1 font-normal text-[#C4C4C4] ">
+                  {props?.details.original_price !== props?.details.price ? (
+                    <>$ {props?.details?.original_price}</>
+                  ) : (
+                    <></>
+                  )}
+                </s>{" "}
+                <span className="text-[#C10000]">${props?.details?.price}</span>
+              </>
+            )}
+          </div>
+        </a>
       </div>
 
       {/* <div>

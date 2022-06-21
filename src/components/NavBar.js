@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../Assets/llogo 1.svg";
 const NavBar = () => {
   return (
-    <nav className=" mx-auto flex max-w-7xl flex-col justify-between border-b-2 bg-white px-2 py-4 sm:px-14 md:flex-row lg:px-8">
+    <nav className=" mx-auto flex max-w-7xl flex-col justify-between  bg-white px-2 py-4 sm:px-14 md:flex-row lg:px-8">
       {/* left Section */}
       <div className="flex w-full items-center justify-center md:justify-start">
         <img className="h-10 w-10" src={logo}></img>
@@ -21,7 +21,7 @@ const NavBar = () => {
             <a href="#about">About</a>
           </li>
           <li className="flex items-center justify-center">
-            <p className="mr-2">US</p>
+            <p className="mr-2 hidden md:block">US</p>
             <img
               width={"22.14px"}
               height={"15px"}

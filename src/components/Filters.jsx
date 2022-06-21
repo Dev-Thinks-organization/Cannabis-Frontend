@@ -22,6 +22,8 @@ const Filters = ({
   const benefitsRef = useRef([]);
   const minpriceRef = useRef([]);
   const maxpriceRef = useRef([]);
+  const [typedMinPrice, setTypedMinPrice] = React.useState("");
+  const [typedMaxPrice, setTypedMaxPrice] = React.useState("");
   const clearFilter = () => {
     //unselet all the checkboxes
     subCategory.current.forEach((item) => {
@@ -50,6 +52,8 @@ const Filters = ({
     setSelectedBenefit([]);
     setMaxPrice(null);
     setSelectedCategory([]);
+    setTypedMaxPrice("");
+    setTypedMinPrice("");
     setPage(1);
   };
   function boxPress(element) {
@@ -66,7 +70,8 @@ const Filters = ({
       <div className="mt-10 flex h-5/6 w-80 flex-col justify-between bg-white text-[#004B23] md:border-2 md:py-5 md:px-10">
         <h1 className="hidden md:block">FILTER BY</h1>
         <section>
-          <details
+          {/* <details
+            open
             name="cars"
             value={selectedCategory}
             id="cars"
@@ -124,9 +129,56 @@ const Filters = ({
                   </div>
                 </div>
               ))}
-          </details>
-          <div className="flex flex-col justify-center">
+          </details> */}
+          <div>
+            {category &&
+              category.map((data, id) => (
+                <details
+                  open
+                  key={data.id}
+                  onChange={(e) => {
+                    // check if the checkbox is checked
+                    if (e.target.checked) {
+                      setSelectedCategory((current) => [
+                        ...current,
+                        e.target.value,
+                      ]);
+                      setPage(1);
+                    } else {
+                      setSelectedCategory((current) =>
+                        current.filter((item) => item !== e.target.value)
+                      );
+                      setPage(1);
+                    }
+                  }}
+                >
+                  <summary value="" className="w-auto">
+                    {data.name}
+                  </summary>
+                  {data.children.map((option, subid) => (
+                    <div className="" key={subid}>
+                      <input
+                        type="checkbox"
+                        value={option.name}
+                        id={option.id}
+                        // onClick={() => boxPress(subCategory.current[subid])}
+                        key={option}
+                        ref={(el) => (subCategory.current[option.id] = el)}
+                        name="my-checkbox-category"
+                        className=""
+                      />
+
+                      <label htmlFor={option.name} className="p-2">
+                        {option.name}
+                      </label>
+                    </div>
+                  ))}
+                </details>
+              ))}
+          </div>
+          {/* <div className="flex flex-col justify-center">
             <details
+              open
               name="Min Price"
               className="  custom-select"
               value={minPrice}
@@ -184,9 +236,45 @@ const Filters = ({
                 ))}
               </div>
             </details>
+          </div> */}
+          <div className="">
+            <h3>Price</h3>
+            <div className="flex">
+              <div>
+                <input
+                  type="number"
+                  value={typedMinPrice}
+                  placeholder="Min"
+                  className="h-[19px] w-full rounded-md p-4"
+                  min={0}
+                  pattern="[0-9]*"
+                  onChange={(e) => {
+                    setTypedMinPrice(e.target.value);
+                    setMinPrice(e.target.value);
+                    setPage(1);
+                  }}
+                />
+              </div>
+              <div>
+                <input
+                  type="number"
+                  value={typedMaxPrice}
+                  placeholder="Max"
+                  className="h-[19px] w-full rounded-md p-4"
+                  min={0}
+                  pattern="[0-9]*"
+                  onChange={(e) => {
+                    setTypedMaxPrice(e.target.value);
+                    setMaxPrice(e.target.value);
+                    setPage(1);
+                  }}
+                />
+              </div>
+            </div>
           </div>
 
           <details
+            open
             name="benefit"
             id="cars"
             className="  custom-select"

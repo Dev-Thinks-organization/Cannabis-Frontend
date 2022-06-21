@@ -29,9 +29,11 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
 
       <div className="h-min-[288px] h-[290px] w-80 rounded-[42px]  bg-[#EEEEEE69] ">
         <div className="pt-24">
-          <h1 className="text-center text-lg font-normal text-[#004B23]">
-            {title}
-          </h1>
+          <a href={link}>
+            <h1 className="text-center text-lg font-normal text-[#004B23]">
+              {title}
+            </h1>
+          </a>
         </div>
         <div className="p-6">
           <h2 className="text-left text-base font-normal text-[#004B23]">
@@ -72,9 +74,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
             starSpacing="5px"
             starRatedColor="#FFDD00"
           />
-          <h1 className="ml-4 text-base font-normal text-[#004B23]">
-            {truncate(name ? name : "", 2)}
-          </h1>
+          <h1 className="ml-4 text-base font-normal text-[#004B23]">{name}</h1>
         </div>
       </div>
     </div>

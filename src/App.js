@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Filters from "./components/Filters";
 import ItemSection from "./components/ItemSection";
 import NavBar from "./components/NavBar";
@@ -55,6 +55,7 @@ function App() {
       );
     }
   };
+
   useEffect(() => {
     getCategories();
     getBenefits();

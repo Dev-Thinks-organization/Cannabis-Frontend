@@ -76,8 +76,8 @@ const SearchSection = ({
       <div
         className={`search-bg bg-image flex   h-96 flex-wrap items-center justify-center`}
       >
-        <div className="item-center flex w-1/2 flex-col justify-center ">
-          <h1 className=" mb-10 text-center text-2xl  font-normal text-[#004B23] md:text-6xl">
+        <div className="item-center flex w-full flex-col justify-center md:w-1/2 ">
+          <h1 className=" mb-10 text-center text-4xl  font-normal  text-[#004B23] md:text-6xl">
             Discover the best <br /> CBD Products
           </h1>
           <label></label>
