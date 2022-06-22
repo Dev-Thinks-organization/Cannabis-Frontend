@@ -17,6 +17,7 @@
     "flowbite-react": "^0.0.25",
     "optimized-images-loader": "^0.4.0",
     "react": "^18.0.0",
+    "react-burger-menu": "^3.0.8",
     "react-dom": "^18.0.0",
     "react-horizontal-scrolling-menu": "^2.8.2",
     "react-loader": "^2.4.7",
