@@ -197,7 +197,7 @@ const ItemSection = ({
             </Transition>
           </Menu>
         </div>
-        <div className="flex  w-full flex-wrap justify-evenly gap-6">
+        <div className="flex  w-full flex-wrap justify-center gap-[5px]">
           {data.length > 0 ? (
             data.map((details, id) => <Card details={details} key={id} />)
           ) : (
@@ -211,7 +211,7 @@ const ItemSection = ({
                 />
               ) : (
                 <h1 className="text-2xl font-bold text-[#004B23]">
-                  No results Found{" "}
+                  No Items To Show
                 </h1>
               )}
             </>

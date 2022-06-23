@@ -6,12 +6,17 @@ import { Modal } from "flowbite-react";
 
 const Card = (props) => {
   const [open, setOpen] = useState(false);
+
   const [openDescription, setOpenDescription] = useState(false);
+  let showRedColor = false;
   const onClose = () => {
     setOpen(false);
   };
+  if (props?.details.original_price !== props?.details.price) {
+    showRedColor = true;
+  }
   return (
-    <div className=" h-96 w-40  overflow-hidden  rounded-sm  md:w-56 ">
+    <div className=" h-96 w-40  cursor-pointer  overflow-hidden  rounded-sm  md:w-56">
       <a href={props?.details?.link_to_item} target={"_blank"}>
         <img
           className="h-1/2 w-full object-contain"
@@ -21,16 +26,16 @@ const Card = (props) => {
           alt="Sunset in the mountains"
         />
       </a>
-      <div className=" h-48 w-40  border-[1px] border-[#E5E5E5]  md:w-56">
+      <div className=" h-48 w-40  border-[1px] border-[#E5E5E5] bg-white  hover:bg-[#F2F2F2]  md:w-56">
         <div className="center    px-3">
-          <div className="flex flex-wrap justify-center ">
+          <div className="flex flex-wrap justify-start ">
             <div className="mb-1 text-left text-base font-normal text-[#004B23]">
               <a href={props?.details?.link_to_item} target={"_blank"}>
                 <TextTruncate
                   line={2}
                   element="span"
                   className="cursor-pointer text-center"
-                  truncateText={false}
+                  truncateText={""}
                   text={props?.details?.name}
                   textTruncateChild={false}
                 />
@@ -83,20 +88,40 @@ const Card = (props) => {
                 </Modal.Body>
               </Modal>
             </div>{" "}
-            <StarRatings
-              rating={Math.round(props?.details?.reviews_score)}
-              numberOfStars={5}
-              name="rating"
-              starDimension="15px"
-              starSpacing="5px"
-              starRatedColor="#CCFF33"
-            />
+            <div className="flex items-center justify-between ">
+              <div className="mb-2  hidden md:block">
+                <StarRatings
+                  className=""
+                  rating={Math.round(props?.details?.reviews_score)}
+                  numberOfStars={5}
+                  name="rating"
+                  starDimension="15px"
+                  starSpacing="1px"
+                  starRatedColor="#CCFF33"
+                />
+              </div>
+              <div className="mb-2 md:hidden">
+                <StarRatings
+                  className=""
+                  rating={Math.round(props?.details?.reviews_score)}
+                  numberOfStars={5}
+                  name="rating"
+                  starDimension="10px"
+                  starSpacing="1px"
+                  starRatedColor="#CCFF33"
+                />
+              </div>
+
+              <a href={props?.details?.link_to_item} target={"_blank"}>
+                <p className="ml-2 hidden text-center text-[13px] font-normal text-[#004B23] md:block">
+                  {props?.details?.count_of_reviews} Reviews
+                </p>
+                <p className="ml-2  text-center text-[13px] font-normal text-[#004B23] md:hidden">
+                  {props?.details?.count_of_reviews}
+                </p>
+              </a>
+            </div>
           </div>
-          <a href={props?.details?.link_to_item} target={"_blank"}>
-            <p className="text-center text-base text-[#004B23]">
-              {props?.details?.count_of_reviews} Reviews
-            </p>
-          </a>
         </div>
         <a href={props?.details?.link_to_item} target={"_blank"}>
           <div className="flex flex-wrap justify-center px-6 pt-1 pb-2 font-normal text-[#004B23] ">
@@ -107,7 +132,7 @@ const Card = (props) => {
                 props?.details.original_price_to ? (
                   <>
                     {" "}
-                    <s className="font-normal text-[#C4C4C4] ">
+                    <s className="text-xs font-normal text-[#C4C4C4] md:text-base ">
                       $ {props?.details?.original_price_from} - $
                       {props?.details?.original_price_to}
                     </s>{" "}
@@ -115,19 +140,27 @@ const Card = (props) => {
                 ) : (
                   <></>
                 )}
-                $ {props?.details?.price_range_from} - $
-                {props?.details?.price_range_to}
+                <span className="text-xs md:text-base">
+                  $ {props?.details?.price_range_from} - $
+                  {props?.details?.price_range_to}
+                </span>
               </>
             ) : (
               <>
-                <s className="mr-1 font-normal text-[#C4C4C4] ">
+                <s className="mr-1 text-xs font-normal text-[#C4C4C4] md:text-base">
                   {props?.details.original_price !== props?.details.price ? (
-                    <>$ {props?.details?.original_price}</>
+                    <>$ {props?.details?.original_price} </>
                   ) : (
                     <></>
                   )}
                 </s>{" "}
-                <span className="text-[#C10000]">${props?.details?.price}</span>
+                <span
+                  className={`text-xs md:text-base ${
+                    showRedColor ? "text-[#C10000]" : ""
+                  } `}
+                >
+                  ${props?.details?.price}
+                </span>
               </>
             )}
           </div>

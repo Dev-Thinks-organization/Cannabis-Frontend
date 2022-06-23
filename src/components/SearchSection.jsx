@@ -62,6 +62,8 @@ const SearchSection = ({
           page > 0 ? page : 1
         }&ordering=${sort ? sort : ""}`
       );
+      const items = [...new Set(res.data.results)];
+      // console.log(items, "-----items");
       setTotalPages(res.data.total_pages);
       setCount(res.data.count);
       setSearchResults(res.data.results);

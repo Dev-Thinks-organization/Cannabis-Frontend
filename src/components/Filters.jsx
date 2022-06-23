@@ -70,66 +70,6 @@ const Filters = ({
       <div className="mt-10 flex h-5/6 w-80 flex-col justify-between bg-white text-[#004B23] md:border-2 md:py-5 md:px-10">
         <h1 className="hidden md:block">FILTER BY</h1>
         <section>
-          {/* <details
-            open
-            name="cars"
-            value={selectedCategory}
-            id="cars"
-            className=""
-            onChange={(e) => {
-              // check if the checkbox is checked
-              if (e.target.checked) {
-                setSelectedCategory((current) => [...current, e.target.value]);
-                setPage(1);
-              } else {
-                setSelectedCategory((current) =>
-                  current.filter((item) => item !== e.target.value)
-                );
-                setPage(1);
-              }
-            }}
-          >
-            <summary value="" className="w-auto">
-              Category
-            </summary>
-            {category &&
-              category.map((data, id) => (
-                <div className="" key={id}>
-                  <input
-                    type="checkbox"
-                    name="my-checkbox-category"
-                    value={data.name}
-                    ref={(el) => (categoryRef.current[id] = el)}
-                    id={id}
-                    key={id}
-                    className="   border-[#004B23] shadow  checked:bg-[#004B23] checked:shadow-xl focus:ring-[#004B23] "
-                  />
-                  <label htmlFor={data.name} className="p-2 font-bold">
-                    {data.name}
-                  </label>
-                  <div>
-                    {data.children.map((option, subid) => (
-                      <div className="" key={subid}>
-                        <input
-                          type="checkbox"
-                          value={option.name}
-                          id={option.id}
-                          // onClick={() => boxPress(subCategory.current[subid])}
-                          key={option}
-                          ref={(el) => (subCategory.current[option.id] = el)}
-                          name="my-checkbox-category"
-                          className=""
-                        />
-
-                        <label htmlFor={option.name} className="p-2">
-                          {option.name}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-          </details> */}
           <div>
             {category &&
               category.map((data, id) => (
@@ -139,10 +79,7 @@ const Filters = ({
                   onChange={(e) => {
                     // check if the checkbox is checked
                     if (e.target.checked) {
-                      setSelectedCategory((current) => [
-                        ...current,
-                        e.target.value,
-                      ]);
+                      setSelectedCategory(e.target.value);
                       setPage(1);
                     } else {
                       setSelectedCategory((current) =>
@@ -152,125 +89,29 @@ const Filters = ({
                     }
                   }}
                 >
-                  <summary value="" className="w-auto">
+                  <summary value="" className="w-auto font-bold">
                     {data.name}
                   </summary>
                   {data.children.map((option, subid) => (
                     <div className="" key={subid}>
                       <input
-                        type="checkbox"
+                        type="radio"
                         value={option.name}
                         id={option.id}
                         // onClick={() => boxPress(subCategory.current[subid])}
                         key={option}
                         ref={(el) => (subCategory.current[option.id] = el)}
                         name="my-checkbox-category"
-                        className=""
+                        className=" outline:hover:focus:bg-[#004B23]  checked:bg-[#004B23] focus:outline-none"
                       />
 
-                      <label htmlFor={option.name} className="p-2">
+                      <label htmlFor={option.name} className="p-2 text-sm">
                         {option.name}
                       </label>
                     </div>
                   ))}
                 </details>
               ))}
-          </div>
-          {/* <div className="flex flex-col justify-center">
-            <details
-              open
-              name="Min Price"
-              className="  custom-select"
-              value={minPrice}
-              onChange={(e) => {
-                setMinPrice(e.target.value);
-                setPage(1);
-              }}
-            >
-              <summary value="" className="w-auto ">
-                Min Price
-              </summary>
-              <div className="">
-                {[1, 2, 3, 4, 5].map((_, i) => (
-                  <div key={i}>
-                    <input
-                      type={"radio"}
-                      ref={(el) => (minpriceRef.current[i] = el)}
-                      name={`minValue`}
-                      value={`${i + 1}00`}
-                      className="  border-[#004B23] shadow  checked:bg-[#004B23] checked:shadow-xl focus:ring-[#004B23] "
-                    />
-                    <label htmlFor={`${i + 1}00`} className="p-2">
-                      {" "}
-                      {`$${i + 1}00`}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </details>
-            <details
-              name="Max Price "
-              className="  custom-select"
-              value={maxPrice}
-              onChange={(e) => {
-                setMaxPrice(e.target.value);
-                setPage(1);
-              }}
-            >
-              <summary className="w-auto ">Max Price</summary>
-
-              <div className="">
-                {[1, 2, 3, 4, 5].map((_, i) => (
-                  <div key={i}>
-                    <input
-                      type={"radio"}
-                      name={`maxValue`}
-                      ref={(el) => (maxpriceRef.current[i] = el)}
-                      value={`${i + 1}00`}
-                      className="  selected:hover:checked:focus:ring-[#004B23] border-[#004B23]  shadow checked:bg-[#004B23] checked:shadow-xl hover:ring-[#004B23] "
-                    />
-                    <label htmlFor={`${i + 1}00`} className="p-2">
-                      {`$${i + 1}00`}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </details>
-          </div> */}
-          <div className="">
-            <h3>Price</h3>
-            <div className="flex">
-              <div>
-                <input
-                  type="number"
-                  value={typedMinPrice}
-                  placeholder="Min"
-                  className="h-[19px] w-full rounded-md p-4"
-                  min={0}
-                  pattern="[0-9]*"
-                  onChange={(e) => {
-                    setTypedMinPrice(e.target.value);
-                    setMinPrice(e.target.value);
-                    setPage(1);
-                  }}
-                />
-              </div>
-              <div>
-                <input
-                  type="number"
-                  value={typedMaxPrice}
-                  placeholder="Max"
-                  className="h-[19px] w-full rounded-md p-4"
-                  min={0}
-                  pattern="[0-9]*"
-                  onChange={(e) => {
-                    setTypedMaxPrice(e.target.value);
-                    setMaxPrice(e.target.value);
-                    setPage(1);
-                  }}
-                />
-              </div>
-            </div>
           </div>
 
           <details
@@ -292,7 +133,7 @@ const Filters = ({
             }}
             value={selectedBenefit}
           >
-            <summary value="" className="w-full">
+            <summary value="" className="w-full font-bold">
               Benefits
             </summary>
             {benefits &&
@@ -303,13 +144,48 @@ const Filters = ({
                     value={data.name}
                     ref={(el) => (benefitsRef.current[id] = el)}
                   />
-                  <label htmlFor={data.name} className="p-2">
+                  <label htmlFor={data.name} className="p-2 text-sm">
                     {data.name}
                   </label>
                 </div>
               ))}
           </details>
         </section>
+        <div className=" pt-3">
+          <h3 className="font-bold">Price</h3>
+          <div className="flex ">
+            <div>
+              <input
+                type="number"
+                value={typedMinPrice}
+                placeholder="Min Price"
+                className="h-[15px] w-full rounded-md p-3"
+                min={0}
+                pattern="[0-9]*"
+                onChange={(e) => {
+                  setTypedMinPrice(e.target.value);
+                  setMinPrice(e.target.value);
+                  setPage(1);
+                }}
+              />
+            </div>
+            <div>
+              <input
+                type="number"
+                value={typedMaxPrice}
+                placeholder="Max Price"
+                className="h-[15px] w-full rounded-md p-3"
+                min={0}
+                pattern="[0-9]*"
+                onChange={(e) => {
+                  setTypedMaxPrice(e.target.value);
+                  setMaxPrice(e.target.value);
+                  setPage(1);
+                }}
+              />
+            </div>
+          </div>
+        </div>
 
         <button
           className="mt-4 border-2 border-[#C4C4C4] bg-white py-2 px-4 text-center text-[#004B23] "

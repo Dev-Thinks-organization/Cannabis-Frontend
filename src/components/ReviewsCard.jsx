@@ -29,7 +29,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
 
       <div className="h-min-[288px] h-[290px] w-80 rounded-[42px]  bg-[#EEEEEE69] ">
         <div className="pt-24">
-          <a href={link}>
+          <a href={link} target="_blank">
             <h1 className="text-center text-lg font-normal text-[#004B23]">
               {title}
             </h1>
@@ -52,6 +52,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
                 </a>
               }
             />
+
             <Modal show={open} onClose={onClose}>
               <Modal.Header>Review By {name}</Modal.Header>
               <Modal.Body>
@@ -65,17 +66,21 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
             </Modal>
           </h2>
         </div>
-        <div className="flex justify-center pb-6 ">
-          <StarRatings
+        <a href={link} target={"_blank"}>
+          <div className="flex justify-start pb-6 ">
+            {/* <StarRatings
             rating={Math.round(rating)}
             numberOfStars={5}
             name="rating"
             starDimension="10px"
             starSpacing="5px"
             starRatedColor="#FFDD00"
-          />
-          <h1 className="ml-4 text-base font-normal text-[#004B23]">{name}</h1>
-        </div>
+          /> */}
+            <h1 className="ml-4 text-base font-normal text-[#004B23]">
+              {name}
+            </h1>
+          </div>
+        </a>
       </div>
     </div>
   );
