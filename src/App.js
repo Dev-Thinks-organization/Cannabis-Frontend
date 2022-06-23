@@ -10,11 +10,15 @@ import Footer from "./components/Footer";
 import Message from "./components/Message";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import ReviewsCard from "./components/ReviewsCard";
-import LeftArrow from "./components/LeftArrow";
-import RightArrow from "./components/RightArrow";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import howItWorks from "./Assets/howItWorks.svg";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from "@heroicons/react/outline";
+
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [category, setCategory] = useState(null);
@@ -28,7 +32,39 @@ function App() {
   const [totalPage, setTotalPages] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [sort, setSort] = useState("-popular_ind");
+  const RightArrow = () => {
+    const { isLastItemVisible, scrollNext } =
+      React.useContext(VisibilityContext);
+    console.log("scroll  right is clicked");
+    return (
+      <button
+        className=" flex items-center justify-center "
+        onClick={() => scrollNext()}
+      >
+        <ChevronDoubleRightIcon className="h-5 w-5 text-[#004B23]">
+          righ{" "}
+        </ChevronDoubleRightIcon>
+      </button>
+    );
+  };
+  const LeftArrow = () => {
+    const { isFirstItemVisible, scrollPrev } =
+      React.useContext(VisibilityContext);
 
+    return (
+      <button
+        onClick={() => scrollPrev()}
+        className=" flex items-center justify-center"
+      >
+        <ChevronDoubleLeftIcon
+          className="h-5 w-5 text-[#004B23]"
+          disabled={isFirstItemVisible}
+        >
+          Left
+        </ChevronDoubleLeftIcon>
+      </button>
+    );
+  };
   const getCategories = async () => {
     try {
       const res = await Axios.get(

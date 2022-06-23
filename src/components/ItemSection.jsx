@@ -202,7 +202,7 @@ const ItemSection = ({
             data.map((details, id) => <Card details={details} key={id} />)
           ) : (
             <>
-              {searchText === "" ? (
+              {data.count === 0 ? (
                 <ClipLoader
                   color={"#004B23"}
                   loading={true}

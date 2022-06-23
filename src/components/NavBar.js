@@ -1,9 +1,5 @@
 import React from "react";
 import logo from "../Assets/llogo 1.svg";
-import { slide as Menu } from "react-burger-menu";
-import { Navbar } from "flowbite-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceGrinWide } from "@fortawesome/free-solid-svg-icons";
 import burgerSvg from "../Assets/hamburger.svg";
 import burgerSvgClose from "../Assets/hamBurgerClose.svg";
 import linkdien from "../Assets/linkdien.svg";
