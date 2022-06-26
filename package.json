@@ -1,34 +1,29 @@
 {
-  "name": "app",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@emotion/react": "^11.9.3",
+    "@fortawesome/fontawesome-free": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
-    "@headlessui/react": "^1.6.4",
+    "@headlessui/react": "^1.6.5",
     "@heroicons/react": "^1.0.6",
-    "@tailwindcss/forms": "^0.5.2",
-    "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.26.1",
-    "flowbite": "^1.4.7",
-    "flowbite-react": "^0.0.25",
-    "optimized-images-loader": "^0.4.0",
-    "react": "^18.0.0",
-    "react-burger-menu": "^3.0.8",
-    "react-dom": "^18.0.0",
-    "react-horizontal-scrolling-menu": "^2.8.2",
-    "react-loader": "^2.4.7",
-    "react-optimized-image": "^0.4.1",
-    "react-scripts": "5.0.0",
+    "axios": "^0.27.2",
+    "flowbite-react": "^0.0.27",
+    "heroicons": "^1.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-horizontal-scrolling-menu": "^3.0.1",
+    "react-scripts": "5.0.1",
     "react-spinners": "^0.12.0",
     "react-star-ratings": "^2.3.0",
     "react-text-truncate": "^0.19.0",
-    "react-toastify": "^9.0.4",
+    "react-toastify": "^9.0.5",
     "styled-components": "^5.3.5",
-    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -56,11 +51,8 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.4",
-    "postcss": "^8.4.12",
-    "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.11",
-    "tailwindcss": "^3.0.23"
-  },
-  "homepage": "."
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.4"
+  }
 }
