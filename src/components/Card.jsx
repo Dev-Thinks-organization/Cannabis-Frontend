@@ -24,6 +24,7 @@ const Card = (props) => {
           // TODO - add image when deploying
           src={props.details.img_source_link}
           alt="Sunset in the mountains"
+          loading="lazy"
         />
       </a>
       <div className=" h-48 w-40  border-[1px] border-[#E5E5E5] bg-white  hover:bg-[#F2F2F2]  md:w-56">

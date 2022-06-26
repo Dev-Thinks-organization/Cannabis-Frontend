@@ -41,9 +41,7 @@ function App() {
         className=" flex items-center justify-center "
         onClick={() => scrollNext()}
       >
-        <ChevronDoubleRightIcon className="h-5 w-5 text-[#004B23]">
-          righ{" "}
-        </ChevronDoubleRightIcon>
+        <ChevronDoubleRightIcon className="h-5 w-5 text-[#004B23]" />
       </button>
     );
   };
@@ -59,9 +57,7 @@ function App() {
         <ChevronDoubleLeftIcon
           className="h-5 w-5 text-[#004B23]"
           disabled={isFirstItemVisible}
-        >
-          Left
-        </ChevronDoubleLeftIcon>
+        />
       </button>
     );
   };
@@ -186,13 +182,16 @@ function App() {
       </div>
 
       {/* Cards Section  */}
-      <section className="container mx-auto max-h-max  " id="reviews">
+      <section
+        className="container mx-auto max-h-max min-h-[367px] "
+        id="reviews"
+      >
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-          {searchResults &&
-            searchResults.map((reviews) => (
+          {searchResults.count !== 0 ? (
+            searchResults.map((reviews, id) => (
               <ReviewsCard
                 itemId={reviews.id}
-                key={reviews.id}
+                key={id}
                 name={reviews.recent_customer_name}
                 description={reviews.recent_customer_desc}
                 rating={reviews.recent_customer_score}
@@ -200,7 +199,14 @@ function App() {
                 picture={reviews.img_source_link}
                 link={reviews.link_to_item}
               />
-            ))}
+            ))
+          ) : (
+            <>
+              <div className="pt-18 container mx-auto flex items-center justify-center   pl-6 pr-6 ">
+                <h1>No Reviews Found</h1>
+              </div>
+            </>
+          )}
         </ScrollMenu>
       </section>
       <section className=" md:p-18 pt-24 pb-24" id="how-it-works">

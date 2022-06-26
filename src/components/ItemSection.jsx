@@ -197,7 +197,7 @@ const ItemSection = ({
             </Transition>
           </Menu>
         </div>
-        <div className="flex  w-full flex-wrap justify-center gap-[5px]">
+        <div className="flex  min-h-screen w-full flex-wrap justify-center gap-[15px]">
           {data.length > 0 ? (
             data.map((details, id) => <Card details={details} key={id} />)
           ) : (

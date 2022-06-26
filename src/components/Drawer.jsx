@@ -12,11 +12,11 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
     >
       <section
         className={
-          " delay-400 absolute right-0 h-full  max-w-sm transform bg-white shadow-xl transition-all duration-500 ease-in-out  " +
+          " delay-400 absolute right-0 h-full  max-w-xs transform bg-white shadow-xl transition-all duration-500 ease-in-out  " +
           (isOpen ? " translate-x-0 " : " translate-x-full ")
         }
       >
-        <article className="relative flex h-full w-screen max-w-sm flex-col space-y-6 overflow-y-scroll pb-10">
+        <article className="relative flex h-full w-screen max-w-xs flex-col space-y-6 overflow-y-scroll pb-10">
           <div className="flex w-full flex-row-reverse justify-between bg-[#CCFF33]">
             <header className="p-4 text-lg font-normal">Filter By</header>
 
