@@ -12,7 +12,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
   };
   return (
     <div
-      className={`pt-18 container mx-auto   pl-6 pr-6 hover:animate-pulse ${
+      className={`pt-18 container mx-auto   pl-6 pr-6  ${
         description && title && picture && rating ? "" : "hidden"
       }`}
     >
@@ -31,7 +31,14 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
         <div className="pt-24">
           <a href={link} target="_blank">
             <h1 className="text-center text-lg font-normal text-[#004B23]">
-              {title}
+              <TextTruncate
+                line={1}
+                element="span"
+                className="cursor-pointer text-center"
+                truncateText=""
+                text={title}
+                textTruncateChild=""
+              />
             </h1>
           </a>
         </div>

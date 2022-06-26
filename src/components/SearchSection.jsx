@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Search from "../Assets/Search.svg";
 import { toast } from "react-toastify";
+import { useScrollTo } from "react-use-window-scroll";
 const SearchSection = ({
   setSearchResults,
   searchResults,
@@ -18,6 +19,7 @@ const SearchSection = ({
   page,
   sort,
 }) => {
+  const scrollTo = useScrollTo();
   const fetchData = async () => {
     try {
       let category = selectedCategory.toString();
@@ -73,12 +75,21 @@ const SearchSection = ({
       );
     }
   };
+  const onClicke = (e) => {
+    // Window.scroll(0, 100);
+    console.log("clicked");
+    scrollTo({
+      top: 200,
+      left: 100,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className=" ">
       <div
         className={`search-bg bg-image flex   h-96 flex-wrap items-center justify-center`}
       >
-        <div className="item-center flex w-full flex-col justify-center md:w-1/2 ">
+        <div className="item-center flex w-11/12 flex-col justify-center md:w-1/2 ">
           <h1 className=" mb-10 text-center text-4xl  font-normal  text-[#004B23] md:text-6xl">
             Discover the best <br /> CBD Products
           </h1>
@@ -86,6 +97,7 @@ const SearchSection = ({
           <div className="flex  w-full rounded-full  bg-white p-2 ">
             <img src={Search} alt="logo " />
             <input
+              onClick={() => onClicke()}
               onChange={onType}
               value={searchText}
               className="decoration-none selection:decoration-none w-full focus:outline-none"

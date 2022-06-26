@@ -67,7 +67,7 @@ const Filters = ({
   }
   return (
     <div className="">
-      <div className="mt-10 flex h-5/6 w-80 flex-col justify-between bg-white text-[#004B23] md:border-2 md:py-5 md:px-10">
+      <div className="mt-10 flex h-5/6 flex-col items-center justify-between bg-white text-[#004B23] md:w-80 md:border-2 md:py-5 md:px-10">
         <h1 className="hidden md:block">FILTER BY</h1>
         <section>
           <div>
@@ -151,7 +151,7 @@ const Filters = ({
               ))}
           </details>
         </section>
-        <div className=" pt-3">
+        <div className=" w-10/12 pt-3">
           <h3 className="font-bold">Price</h3>
           <div className="flex ">
             <div>
