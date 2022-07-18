@@ -10,6 +10,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
   const onClose = () => {
     setOpen(false);
   };
+  console.log(description,title,name)
   return (
     <div
       className={`pt-18 container mx-auto   pl-6 pr-6  ${
@@ -33,7 +34,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
             <h1 className="text-center text-lg font-normal text-[#004B23]">
               <TextTruncate
                 line={1}
-                element="span"
+                element="h5"
                 className="cursor-pointer text-center"
                 truncateText=""
                 text={title}
@@ -44,9 +45,9 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
         </div>
         <div className="p-6">
           <h2 className="text-left text-base font-normal text-[#004B23]">
-            <TextTruncate
+             <TextTruncate
               line={3}
-              element="span"
+              element="h5"
               className="cursor-pointer text-center"
               truncateText="..."
               text={description}
@@ -74,7 +75,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
           </h2>
         </div>
         <a href={link} target={"_blank"}>
-          <div className="flex justify-start pb-6 ">
+          <div className="flex justify-start pb-6 pl-2  ">
             {/* <StarRatings
             rating={Math.round(rating)}
             numberOfStars={5}
@@ -83,7 +84,7 @@ const ReviewsCard = ({ title, description, rating, name, picture, link }) => {
             starSpacing="5px"
             starRatedColor="#FFDD00"
           /> */}
-            <h1 className="ml-4 text-base font-normal text-[#004B23]">
+            <h1 className="ml-4 text-base font-normal  text-[#004B23]">
               {name}
             </h1>
           </div>

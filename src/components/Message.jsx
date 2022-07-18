@@ -2,11 +2,11 @@ import React from "react";
 
 const Message = (props) => {
   return (
-    <div className={"flex items-center justify-center md:pt-2 md:pb-2"}>
+    <div className={"flex items-center justify-center md:pt-4 md:pb-2 pt-2"}>
       <div className={" border border-[#E5E5E5]"}>
         <h1
           className={
-            "p-2 text-left text-[16px] font-normal text-[#004B23] md:p-4 md:text-center "
+            "p-4 text-left text-xs md:text-base font-normal leading-6  text-[#004B23] md:p-4 md:text-center "
           }
         >
           With thousands of cannabidiol (CBD) products, CBDgle makes it easy to

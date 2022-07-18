@@ -36,7 +36,7 @@ const NavBar = () => {
               <img
                 width={"22.14px"}
                 height={"15px"}
-                objectFit={"contain"}
+                objectfit={"contain"}
                 src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/800px-Flag_of_the_United_States.svg.png?20151118161041"
                 alt="US Flag"
               />
@@ -50,7 +50,7 @@ const NavBar = () => {
               <img
                 width={"22.14px"}
                 height={"15px"}
-                objectFit={"contain"}
+                objectfit={"contain"}
                 className="mr-2"
                 src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/800px-Flag_of_the_United_States.svg.png?20151118161041"
                 alt="US Flag"

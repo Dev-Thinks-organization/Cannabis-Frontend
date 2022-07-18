@@ -16,7 +16,7 @@ const Card = (props) => {
     showRedColor = true;
   }
   return (
-    <div className=" h-96 w-40  cursor-pointer  overflow-hidden  rounded-sm  md:w-56">
+    <div className=" h-96 w-40  cursor-pointer  overflow-hidden  rounded-sm  md:w-48">
       <a href={props?.details?.link_to_item} target={"_blank"}>
         <img
           className="h-1/2 w-full object-contain"
@@ -27,7 +27,7 @@ const Card = (props) => {
           loading="lazy"
         />
       </a>
-      <div className=" h-48 w-40  border-[1px] border-[#E5E5E5] bg-white  hover:bg-[#F2F2F2]  md:w-56">
+      <div className=" h-48 w-40  border-[1px] border-[#E5E5E5] bg-white  hover:bg-[#F2F2F2]  md:w-48">
         <div className="center    px-3">
           <div className="flex flex-wrap justify-start ">
             <div className="mb-1 text-left text-base font-normal text-[#004B23]">
@@ -96,7 +96,7 @@ const Card = (props) => {
                   rating={Math.round(props?.details?.reviews_score)}
                   numberOfStars={5}
                   name="rating"
-                  starDimension="15px"
+                  starDimension="13px"
                   starSpacing="1px"
                   starRatedColor="#CCFF33"
                 />
@@ -107,7 +107,7 @@ const Card = (props) => {
                   rating={Math.round(props?.details?.reviews_score)}
                   numberOfStars={5}
                   name="rating"
-                  starDimension="10px"
+                  starDimension="15px"
                   starSpacing="1px"
                   starRatedColor="#CCFF33"
                 />

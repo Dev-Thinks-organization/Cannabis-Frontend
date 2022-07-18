@@ -71,13 +71,34 @@ details[open] summary{
 
 
 .bg-image{
-  background-image: url("./Assets/bg89.png");
-  /* background-position: center; */
-  background-repeat: repeat-x;
+  background-image: url("./Assets/newbg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 
 
 }
+.search_input{
+background: #FFFFFF;
+box-shadow: inset 10px 10px 10px rgba(3, 77, 38, 0.28);
+border-radius: 62px;
+/* z-index: 5px; */
+font-family: 'Alata';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 21px;
 
+color: #C4C4C4;
+
+mix-blend-mode: normal;
+
+}
+.search_input1{
+  /* box-shadow: inset 10px 10px 10px rgba(3, 77, 38, 0.28); */
+
+}
 .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);

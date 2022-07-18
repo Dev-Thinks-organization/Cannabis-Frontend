@@ -6,11 +6,11 @@ import twitter from "../Assets/twitter.svg";
 import instagram from "../Assets/instagram.svg";
 const Footer = () => {
   return (
-    <div className="border-t-2" id="about">
+    <div className="border-t-2  md:bg-[#DDF156]" id="about">
       <div className="container mx-auto flex flex-col justify-between py-12  ">
         <div className="pt-24 pb-24">
           <h1 className="text-center text-xl font-normal text-[#004B23]">
-            <a>www.cbdgle.com</a>
+            <a>www.cbdgle.com/ </a>
             is the best source site to compare CBD Products prices
           </h1>
           <p className="p-4 text-left text-base font-normal text-[#004B23] md:text-center">

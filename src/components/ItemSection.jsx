@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./Card";
-import Loader from "react-loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -197,7 +196,7 @@ const ItemSection = ({
             </Transition>
           </Menu>
         </div>
-        <div className="flex  min-h-screen w-full flex-wrap justify-center gap-[15px]">
+        <div className="flex   w-full flex-wrap justify-center gap-[15px]">
           {data.length > 0 ? (
             data.map((details, id) => <Card details={details} key={id} />)
           ) : (

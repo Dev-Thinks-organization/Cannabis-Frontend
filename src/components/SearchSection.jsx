@@ -79,7 +79,7 @@ const SearchSection = ({
     // Window.scroll(0, 100);
     console.log("clicked");
     scrollTo({
-      top: 200,
+      top: 300,
       left: 100,
       behavior: "smooth",
     });
@@ -89,18 +89,18 @@ const SearchSection = ({
       <div
         className={`search-bg bg-image flex   h-96 flex-wrap items-center justify-center`}
       >
-        <div className="item-center flex w-11/12 flex-col justify-center md:w-1/2 ">
-          <h1 className=" mb-10 text-center text-4xl  font-normal  text-[#004B23] md:text-6xl">
+        <div className="item-center flex w-10/12 flex-col justify-center md:w-1/2 ">
+          <h1 className=" mb-10 text-center text-4xl  font-normal  text-[#222831] md:text-6xl">
             Discover the best <br /> CBD Products
           </h1>
           <label></label>
-          <div className="flex  w-full rounded-full  bg-white p-2 ">
-            <img src={Search} alt="logo " />
+          <div className="   ">
+            <img src={Search} alt="logo " className="absolute ml-3 w-5 h-5 mt-2 md:w-[29px] md:h-[40px] md:mt-0 " />
             <input
               onClick={() => onClicke()}
               onChange={onType}
               value={searchText}
-              className="decoration-none selection:decoration-none w-full focus:outline-none"
+              className="decoration-none pr-3 pl-10 selection:decoration-none w-full rounded-full p-2 focus:outline-none search_input text-xs md:text-base text-[#C4C4C4] "
               placeholder="What CBD products are you looking for?"
             />
           </div>

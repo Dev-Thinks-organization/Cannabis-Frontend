@@ -18,7 +18,14 @@ import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/outline";
-
+import newHowItWorks from "./Assets/newHowItWorks.svg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faForwardStep,
+  faBackwardStep,
+} from "@fortawesome/free-solid-svg-icons";
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [category, setCategory] = useState(null);
@@ -32,35 +39,17 @@ function App() {
   const [totalPage, setTotalPages] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [sort, setSort] = useState("-popular_ind");
-  const RightArrow = () => {
-    const { isLastItemVisible, scrollNext } =
-      React.useContext(VisibilityContext);
-    console.log("scroll  right is clicked");
-    return (
-      <button
-        className=" flex items-center justify-center "
-        onClick={() => scrollNext()}
-      >
-        <ChevronDoubleRightIcon className="h-5 w-5 text-[#004B23]" />
-      </button>
-    );
-  };
-  const LeftArrow = () => {
-    const { isFirstItemVisible, scrollPrev } =
-      React.useContext(VisibilityContext);
-
-    return (
-      <button
-        onClick={() => scrollPrev()}
-        className=" flex items-center justify-center"
-      >
-        <ChevronDoubleLeftIcon
-          className="h-5 w-5 text-[#004B23]"
-          disabled={isFirstItemVisible}
-        />
-      </button>
-    );
-  };
+  const scrollRef = useRef()
+  // Function to scroll left 
+  const scrollLeft = () => {
+    scrollRef.current.scrollLeft-=200;
+    console.log("first", scrollRef.current.scrollLeft)
+  }
+  // Function to scroll right
+  const scrollRight = () => {
+    scrollRef.current.scrollLeft+=200;
+    console.log("second", scrollRef.current.scrollRight)
+  }
   const getCategories = async () => {
     try {
       const res = await Axios.get(
@@ -87,6 +76,8 @@ function App() {
       );
     }
   };
+  console.log(searchResults);
+
 
   useEffect(() => {
     getCategories();
@@ -174,7 +165,7 @@ function App() {
         />
       </div>
       {/* bottom Message Section  */}
-      <div className="flex items-center justify-center bg-[#CCFF33] p-4 text-center font-sans text-2xl font-normal text-[#004B23]">
+      <div className="flex items-center justify-center bg-[#CCFF33] md:bg-[#B5E9FF] p-4 text-center font-sans text-xl font-normal text-[#004B23]">
         <h1>
           Happy Customers? <br /> We've G ot 'Em! See what they have to say
           about how we've revolutionized how they find CBD products online!
@@ -183,14 +174,27 @@ function App() {
 
       {/* Cards Section  */}
       <section
-        className="container mx-auto max-h-max min-h-[367px] "
+        className="container mx-auto max-h-max min-h-[367px] flex flex-row justify-center items-center "
         id="reviews"
       >
-        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-          {searchResults.count !== 0 ? (
-            searchResults.map((reviews, id) => (
+        
+      
+      <FontAwesomeIcon
+              className="cursor-pointer text-[#004B23]  p-4 "
+              icon={faBackwardStep}
+              onClick={() => scrollLeft()}
+            />
+<div className="flex  overflow-x-hidden overflow-y-hidden" ref={scrollRef}>
+{typeof searchResults !== 'undefined' && searchResults.length === 0  ? (
+             <div className="pt-18 container mx-auto w-full  pl-6 pr-6">
+             <h1 className="text-normal font-bold">No Reviews To Show</h1>
+           </div>
+          ) : (
+        
+             
+              searchResults.map((reviews, id) => (
               <ReviewsCard
-                itemId={reviews.id}
+                itemId={id}
                 key={id}
                 name={reviews.recent_customer_name}
                 description={reviews.recent_customer_desc}
@@ -200,18 +204,20 @@ function App() {
                 link={reviews.link_to_item}
               />
             ))
-          ) : (
-            <>
-              <div className="pt-18 container mx-auto flex items-center justify-center   pl-6 pr-6 ">
-                <h1>No Reviews Found</h1>
-              </div>
-            </>
+        
           )}
-        </ScrollMenu>
+</div>
+
+<FontAwesomeIcon
+              className="cursor-pointer text-[#004B23] p-4 "
+              icon={faForwardStep}
+              onClick={() =>scrollRight()}
+            />
       </section>
-      <section className=" md:p-18 pt-24 pb-24" id="how-it-works">
-        <div className=" container mx-auto">
-          <img src={howItWorks} className="md:h-[1303px] md:w-[1372px]" />
+      <section className=" md:p-24 pt-14 pb-4" id="how-it-works">
+        <div className=" container mx-auto flex justify-center ">
+          <img src={newHowItWorks} className=" md:w-[810px] hidden md:block" />
+          <img src={howItWorks} className="md:hidden"/>
         </div>
       </section>
 
